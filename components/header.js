@@ -20,17 +20,22 @@ export default function Header() {
       <div className="roboto-font font-semibold mt-2 sm:mt-5 xl:mt-6 hidden lg:block">
         <a
           className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
-          href="/"
-        >
-          Home
-        </a>
-        <a
-          className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
-          href="/Generate-images"
+          href="/generate-images"
         >
           Generate Images
         </a>
-        
+        <a
+          className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
+          href="/image-variations"
+        >
+          Image Variations
+        </a>
+        <a
+          className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
+          href="/email-replier"
+        >
+          E-mail replier
+        </a>
         <a
           className="text-xs md:text-lg xl:text-2xl border-2 sm:border-4 rounded-3xl p-2 xl:p-2 mx-2 sm:mx-4 xl-mx-6 hover:bg-white hover:text-black"
           href="/"
@@ -47,11 +52,14 @@ export default function Header() {
         />
         {menuOpen && (
           <div className="absolute top-18 sm:top-32 right-0 bg-black w-full text-center my-4 shadow-md z-10">
-            <a href="/" className="block p-2 border-b border-gray-200">
-              Home
-            </a>
-            <a href="/Generate-images" className="block p-2 border-b border-gray-200">
+            <a href="/generate-images" className="block p-2 border-b border-gray-200">
               Generate Images
+            </a>
+            <a href="/image-variations" className="block p-2 border-b border-gray-200">
+            Image Variations
+            </a>
+            <a href="/email-replier" className="block p-2 border-b border-gray-200">
+            E-mail replier
             </a>
           </div>
         )}

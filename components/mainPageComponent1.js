@@ -1,10 +1,10 @@
 export default function MainPageComponent1() {
   return (
     <div>
-      <div className="flex flex-row justify-center pt-10">
+      <div className="flex flex-row justify-center pt-10 fade-in-animation-2s">
         <img src="/images/logo/CreatAILogoText.png" className="w-1/2"></img>
       </div>
-      <div className="flex items-center justify-center pt-10">
+      <div className="flex items-center justify-center pt-10 fade-in-animation-2s">
       <input
         type="text"
         placeholder="Generate your Image"
