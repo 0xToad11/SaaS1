@@ -9,7 +9,7 @@ export default function MainPageComponent2() {
             to life.
           </div>
           <div className="ml-48 mt-4">
-            <button className="button-34 hover:opacity-90">
+            <button onClick={() => window.location.href = '/generate-images'} className="button-34 hover:opacity-90">
               Text to Image
             </button>
           </div>

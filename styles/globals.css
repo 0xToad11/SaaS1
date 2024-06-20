@@ -29,6 +29,51 @@ body {
 /*------------------------------------------------------------ Custom CSS --------------------------------------------------------------- */
 
 /* CSS */
+.button-21 {
+  align-items: center;
+  appearance: none;
+  background-color: #3EB2FD;
+  background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd,sans-serif;
+  font-size: 1.4rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s,background-position .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.button-21:active,
+.button-21:focus {
+  outline: none;
+}
+
+.button-21:hover {
+  background-position: -20px -20px;
+}
+
+.button-21:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+
+/* CSS */
 .button-36 {
   background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
   border-radius: 8px;
@@ -82,6 +127,93 @@ body {
   width: fit-content;
   word-break: break-word;
   border: 0;
+}
+
+
+.button-76 {
+  background-color: #cf245f;
+  background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+  border: 0;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  line-height: 1.75rem; /* 28px */
+  padding: 1rem 1.25rem;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-76:hover {
+  opacity: 0.9;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 15px;
+  aspect-ratio: 5;
+  --_g:no-repeat radial-gradient(farthest-side,#233e74 94%,#0000);
+  background: var(--_g),var(--_g),var(--_g),var(--_g);
+  background-size: 20% 100%;
+  animation:
+    l40-1 .75s infinite alternate,
+    l40-2 1.5s infinite alternate; 
+}
+
+/* Style the input field */
+input[type="file"] {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 100px;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #888;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #149af32b;
+}
+
+/* Change border color on hover */
+input[type="file"]:hover {
+  border-color: #3498db;
+}
+
+@keyframes l40-1 {
+  0%,
+  10% {background-position: 0 0,0 0,0 0,0 0}
+  33% {background-position: 0 0,calc(100%/3) 0,calc(100%/3) 0,calc(100%/3) 0}
+  66% {background-position: 0 0,calc(100%/3) 0,calc(2*100%/3) 0,calc(2*100%/3) 0}
+  90%,
+  100% {background-position: 0 0,calc(100%/3) 0,calc(2*100%/3) 0,100% 0}
+}
+@keyframes l40-2 {
+  0%,49.99% {transform: scale( 1)}
+  50%,100%  {transform: scale(-1)}
+}
+
+
+@keyframes l14 {
+  100%  {background-position:right,left,center,right}
+}
+
+@media (min-width: 1024px) {
+  .button-76 {
+    font-size: 1.5rem; /* 24px */
+    padding: .5rem 1.5rem;
+    line-height: 2rem; /* 32px */
+  }
 }
 
 .image-scale {

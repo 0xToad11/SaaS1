@@ -30,7 +30,7 @@ export default function MainPageComponent3() {
             Get variations of your images by simply dragging.
           </div>
           <div className="mt-4">
-            <button className="button-34 hover:opacity-90">
+            <button onClick={() => window.location.href = '/image-variations'} className="button-34 hover:opacity-90">
               Image Variation
             </button>
           </div>
