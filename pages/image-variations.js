@@ -46,8 +46,8 @@ export default function ImageVariations() {
       <div className="text-center text-3xl font-semibold pt-10 ">
         Image Variation
       </div>
-      <div className="flex pt-20">
-        <div className="w-1/3 pl-20 border pt-8 pb-12 rounded-xl border-slate-500 ml-20 text-slate-200">
+      <div className="lg:flex pt-6 lg:pt-20">
+        <div className="lg:w-1/3 pl-2 lg:pl-20 border pt-2 lg:pt-8 pb-6 lg:pb-12 rounded-xl border-slate-500 ml-6 mr-6 lg:mr-0 lg:ml-20 text-slate-200">
           <div className="py-2">Create image variations from your image</div>
           <form onSubmit={handleSubmit}>
             <input
@@ -57,7 +57,7 @@ export default function ImageVariations() {
               className="border-2"
             />
             {!isLoading ? (
-              <button type="submit" className="button-76 mt-8">
+              <button type="submit" className="button-76 mt-4 lg:mt-8">
                 Generate
               </button>
             ) : (
@@ -65,9 +65,9 @@ export default function ImageVariations() {
             )}
           </form>
         </div>
-        <div className="w-2/3">
+        <div className="lg:w-2/3 pt-6 lg:pt-0">
           <div className="flex justify-center">
-            <img src={imageUrlVariation} className="w-3/4  rounded-3xl"></img>
+            <img src={imageUrlVariation} className="w-5/6 lg:w-3/4  rounded-3xl"></img>
           </div>
         </div>
       </div>

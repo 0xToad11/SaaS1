@@ -64,25 +64,20 @@ export default function GenerateImages() {
       <div className="text-center text-3xl font-semibold pt-10 ">
         Image Generator
       </div>
-      <div className="flex pt-20">
-        <div className="w-1/3 pl-20 border pt-8 pb-12 rounded-xl border-slate-500 ml-20 text-slate-200">
-          <div className="py-2">Create an Image from text prompt</div>
-          {/* <input
-            type="text"
-            placeholder="Enter your prompt"
-            className="opacity-50 font-thin bg-slate-800 h-40 w-3/4 px-4 border border-blue-700 shadow-lg shadow-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700"
-          /> */}
+      <div className="lg:flex pt-6 lg:pt-20">
+        <div className="lg:w-1/3 pl-2 lg:pl-20 border pt-2 lg:pt-8 pb-6 lg:pb-12 rounded-xl border-slate-500 ml-6 mr-6 lg:mr-0 lg:ml-20 text-slate-200">
+          <div className="text-xs lg:text-md py-2">Create an Image from text prompt</div>
           <textarea
             placeholder="Enter your prompt"
-            className="opacity-50 font-thin bg-slate-800 h-24 w-3/4 px-4 border border-blue-700 shadow-lg shadow-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 resize-none"
+            className="text-xs lg:text-md opacity-50 font-thin bg-slate-800 h-16 lg:h-24 w-11/12 lg:w-3/4 px-4 border border-blue-700 shadow-lg shadow-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 resize-none"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
-          <div className="pt-4 pb-1">Quality</div>
+          <div className="text-xs lg:text-md pt-4 pb-1">Quality</div>
           <div className="flex">
             <div className="border rounded-3xl flex py-1">
               <button
-                className={`border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
                   selectedQuality === "Good" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickQuality("Good")}
@@ -90,7 +85,7 @@ export default function GenerateImages() {
                 Good
               </button>
               <button
-                className={`border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
                   selectedQuality === "Excellent"
                     ? "bg-blue-500 text-white"
                     : ""
@@ -101,11 +96,11 @@ export default function GenerateImages() {
               </button>
             </div>
           </div>
-          <div className="pt-4 pb-1">Dimension </div>
+          <div className="text-xs lg:text-md  pt-4 pb-1">Dimension </div>
           <div className="flex">
             <div className="border rounded-3xl flex py-1">
               <button
-                className={`border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
                   selectedDimension === "2D" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickDimension("2D")}
@@ -113,7 +108,7 @@ export default function GenerateImages() {
                 2D
               </button>
               <button
-                className={`border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 px-2 py-1 mx-1 ${
                   selectedDimension === "3D" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickDimension("3D")}
@@ -122,11 +117,11 @@ export default function GenerateImages() {
               </button>
             </div>
           </div>
-          <div className="pt-4 pb-1">Shape </div>
+          <div className="text-xs lg:text-md pt-4 pb-1">Shape </div>
           <div className="flex">
             <div className="border rounded-3xl flex py-1">
               <button
-                className={`border rounded-2xl border-transparent w-28 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 lg:w-28 px-2 py-1 mx-1 ${
                   selectedShape === "Square" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickShape("Square")}
@@ -134,7 +129,7 @@ export default function GenerateImages() {
                 Square
               </button>
               <button
-                className={`border rounded-2xl border-transparent w-28 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 lg:w-28 px-2 py-1 mx-1 ${
                   selectedShape === "Horizontal" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickShape("Horizontal")}
@@ -142,7 +137,7 @@ export default function GenerateImages() {
                 Horizontal
               </button>
               <button
-                className={`border rounded-2xl border-transparent w-28 px-2 py-1 mx-1 ${
+                className={`text-xs lg:text-md border rounded-2xl border-transparent w-20 lg:w-28 px-2 py-1 mx-1 ${
                   selectedShape === "Vertical" ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleClickShape("Vertical")}
@@ -159,9 +154,9 @@ export default function GenerateImages() {
             <div className="loader mt-8"></div>
           )}
         </div>
-        <div className="w-2/3">
+        <div className="pt-10 lg:pt-0 lg:w-2/3">
           <div className="flex justify-center">
-            <img src={imageUrl} className="w-3/4 rounded-3xl"></img>
+            <img src={imageUrl} className="w-5/6 lg:w-3/4 rounded-3xl"></img>
           </div>
         </div>
       </div>

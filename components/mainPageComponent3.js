@@ -20,27 +20,27 @@ export default function MainPageComponent3() {
 
 
   return (
-    <div className="pt-60">
+    <div className="pt-24 lg:pt-60">
       <div className="flex">
-        <div className='w-1/3'></div>
+        <div className='w-0 ml-6 lg:ml-0 lg:w-1/3'></div>
        
-        <div className="w-1/3 pt-32">
-          <div className="text-4xl font-semibold">Image Variation</div>
-          <div className="text-sm pt-2 text-slate-400 w-5/6">
+        <div className="w-1/2 lg:w-1/3 pt-12 lg:pt-32">
+          <div className="text-2xl lg:text-4xl font-semibold">Image Variation</div>
+          <div className="text-xs lg:text-sm pt-2 text-slate-400 w-5/6">
             Get variations of your images by simply dragging.
           </div>
-          <div className="mt-4">
+          <div className="mt-2 lg:mt-4">
             <button onClick={() => window.location.href = '/image-variations'} className="button-34 hover:opacity-90">
               Image Variation
             </button>
           </div>
         </div>
-        <div className="w-1/3">
+        <div className="mt-8 lg:mt-0 w-1/3">
         {images.map((src, index) => (
         <img
           key={index}
           src={src}
-          className={`w-1/4 border border-transparent rounded-3xl absolute transition-opacity duration-1000 ease-in-out ${
+          className={`w-2/5 lg:w-1/4 border border-transparent rounded-3xl absolute transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ transition: 'opacity 1s ease-in-out' }}

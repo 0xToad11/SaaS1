@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div id="footer" className="pt-4 sm:pt-20">
+    <div id="footer" className="pt-8 lg:pt-20">
       <div className="flex flex-row justify-center text-xs sm:text-xs xl:text-sm text-slate-200">
         <a
           className="px-2 hover:opacity-90"
@@ -10,7 +10,7 @@ export default function Footer() {
         </a>
         <a
           className="px-2 hover:opacity-90"
-          href="/PrivacyPolicy"
+          href="/privacy"
         >
           Privacy Policy
         </a>

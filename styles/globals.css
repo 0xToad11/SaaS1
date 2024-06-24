@@ -106,6 +106,15 @@ body {
   }
 }
 
+@media (max-width: 500px) {
+  .button-36 {
+  font-size: 14px;
+  padding: 0 1rem;
+  height: 2.2rem;
+
+  }
+}
+
 /* CSS */
 .button-34 {
   background: #5E5DF0;
@@ -127,6 +136,13 @@ body {
   width: fit-content;
   word-break: break-word;
   border: 0;
+}
+
+@media (max-width:500px) {
+.button-34 {
+  font-size: 12px;
+  padding: 4px 14px;
+}
 }
 
 /* CSS */
@@ -264,6 +280,14 @@ body {
 .button-76:hover {
   opacity: 0.9;
 }
+
+
+@media (max-width:500px) {
+  .button-76 {
+    font-size: 16px;
+    padding: 6px 18px;
+  }
+  }
 
 /* HTML: <div class="loader"></div> */
 .loader {
