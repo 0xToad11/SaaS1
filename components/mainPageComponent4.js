@@ -44,10 +44,10 @@ export default function MainPageComponent4() {
           </div>
         </div>
         <div className="w-1/3 pt-28 lg:pt-32 justify-center">
-          <div className="w-40 lg:w-72 text-xs lg:text-md p-2 border rounded-xl shadow-md shadow-slate-500 text-slate-500 border-slate-500">
+          <div className="w-40 lg:w-72 text-xs lg:text-base p-2 border rounded-xl shadow-md shadow-slate-500 text-slate-500 border-slate-500">
             Subject: Quick Catch-Up!
           </div>
-          <div className="w-48 lg:w-80 text-xs lg:text-md h-36 lg:h-48 p-2 border rounded-xl shadow-lg shadow-slate-500 text-slate-500 border-slate-500 mt-4">
+          <div className="w-48 lg:w-80 text-xs lg:text-base h-36 lg:h-48 p-2 border rounded-xl shadow-lg shadow-slate-500 text-slate-500 border-slate-500 mt-4">
             <div>Hi [Recipient's Name], </div>
             <br></br>
             <TypingEffect text={emailText} />
