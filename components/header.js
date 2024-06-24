@@ -37,7 +37,7 @@ export default function Header() {
           E-mail replier
         </a>
         <a
-          className="text-xs md:text-lg xl:text-2xl border-2 sm:border-4 rounded-3xl p-2 xl:p-2 mx-2 sm:mx-4 xl-mx-6 hover:bg-white hover:text-black"
+          className="text-xs md:text-lg xl:text-2xl button-79"
           href="/"
         >
           Sign in

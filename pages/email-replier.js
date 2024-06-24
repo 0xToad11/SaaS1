@@ -6,7 +6,7 @@ export default function EmailReplier() {
   const [to, setTo] = useState("");
   const [prompt, setPrompt] = useState("");
   const [selectedTone, setSelectedTone] = useState("Formal"); // Set 'Excellent' as default
-  const [responseMessage, setResponseMessage] = useState("");
+  const [responseMessage, setResponseMessage] = useState(`Subject: Example mail \n\nHello Tom, \n\nThanks for using CreatAI. \n\nKind regards, \n\nCreatAI`);
 
   const handleToChange = (event) => {
     setTo(event.target.value);
@@ -93,11 +93,10 @@ export default function EmailReplier() {
           )}
         </div>
 
-        <div className="w-2/3">
+        <div className="w-1/2 pl-20">
           <div className="flex justify-center"></div>
-          <div>E-mail reply</div>
           {responseMessage && (
-          <div className="mt-4 p-4 border rounded-xl border-slate-500 bg-slate-800 text-slate-200 whitespace-pre-wrap">
+          <div className="p-4 border rounded-xl border-slate-500 bg-slate-800 text-slate-200 whitespace-pre-wrap">
             <p>{responseMessage}</p>
           </div>
         )}
