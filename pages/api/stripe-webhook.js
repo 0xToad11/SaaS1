@@ -29,6 +29,8 @@ const handler = async (req, res) => {
     // Retrieve user ID from metadata
     const userId = session.metadata.userId;
     const stripeCustomerId = session.customer;
+    const stripeSubType = session.metadata.subscriptionType;
+    const stripeCreatedTime = session.created;
 
     console.log('User ID from metadata:', userId);
 
@@ -37,11 +39,24 @@ const handler = async (req, res) => {
       return res.status(400).send('Missing user ID in session metadata');
     }
 
+    // Calculate the expiry date
+    let expiryDate = new Date(stripeCreatedTime * 1000); // Convert UNIX timestamp to Date
+    if (stripeSubType === '1m') {
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
+    } else if (stripeSubType === '1y') {
+      expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+    }
+
     try {
-      // Update the user's subscription status in Supabase
+      // Update the user's subscription status and expiry date in Supabase
       const { data, error } = await supabase
         .from('users')
-        .update({ subscription: 'active', stripe_id: stripeCustomerId })
+        .update({
+          subscription: 'active',
+          stripe_id: stripeCustomerId,
+          stripe_sub_type: stripeSubType,
+          expiry_date: expiryDate.toISOString() // Convert Date to ISO format string
+        })
         .eq('id', userId);
 
       if (error) {
