@@ -9,12 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.1.6",
+    "@stripe/stripe-js": "^4.0.0",
+    "@supabase/supabase-js": "^2.43.6",
     "axios": "^1.7.2",
+    "localtunnel": "^2.0.2",
+    "micro": "^10.0.1",
+    "multer": "^1.4.5-lts.1",
     "next": "13.5.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "stripe": "^16.0.0",
+    "svix": "^1.24.0"
   },
   "devDependencies": {
+    "@types/react": "18.3.3",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3"

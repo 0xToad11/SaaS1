@@ -1,20 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import supabase from "/config/supabaseConfig";
+import { useUser } from "@clerk/nextjs";
 
-export default function ImageVariations() {
+export default function ImageVariations({ sessionId, credits, setCredits }) {
   const [imageVariation, setImageVariation] = useState(null);
   const [imageUrlVariation, setImageUrlVariation] = useState(
     "/images/mainpage/DogVariation1.png"
   );
   const [isLoading, setIsLoading] = useState(false); // State for loader
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null); // State for subscription status
+  const { user } = useUser(); // Get the authenticated user
+
+  useEffect(() => {
+    const fetchSubscriptionStatus = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from("users")
+          .select("subscription")
+          .eq("id", user.id)
+          .single();
+        if (error) {
+          console.error("Error fetching subscription status:", error);
+        } else {
+          setSubscriptionStatus(data.subscription);
+        }
+      }
+    };
+
+    if (user) {
+      fetchSubscriptionStatus();
+    }
+  }, [user]);
 
   const handleImageChange = (e) => {
     setImageVariation(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
+
+    if (!user && credits <= 0) {
+      alert("No credits left. Please purchase more credits to continue.");
+      return;
+    }
+
+    if (user && subscriptionStatus !== "active") {
+      alert("Your subscription is not active. Please subscribe to continue.");
+      return;
+    }
+
+    setIsLoading(true);
+
     if (!imageVariation) {
       alert("Please upload an image");
       return;
@@ -25,7 +62,7 @@ export default function ImageVariations() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/generate-variation",
+        "https://saas1-five.vercel.app/api/generate-variation",
         formData,
         {
           headers: {
@@ -34,6 +71,21 @@ export default function ImageVariations() {
         }
       );
       setImageUrlVariation(response.data.imageUrlVariation);
+
+      if (!user) {
+        // Decrement credits locally
+        setCredits(credits - 1);
+
+        // Update credits in the database
+        const { error } = await supabase
+          .from("SessionDB")
+          .update({ credits: credits - 1 })
+          .eq("session_id", sessionId);
+
+        if (error) {
+          console.error("Error decrementing credits:", error);
+        }
+      }
     } catch (error) {
       console.error("Error generating image variation:", error);
     } finally {
@@ -64,10 +116,22 @@ export default function ImageVariations() {
               <div className="loader mt-8"></div>
             )}
           </form>
+          <div className="mt-4 text-xs lg:text-base">
+            {user
+              ? subscriptionStatus === "invalid" && (
+                  <a href="/account">
+                    <button className="button-29-sub mt-4">Subscribe</button>
+                  </a>
+                )
+              : `Credits: ${credits}`}
+          </div>
         </div>
         <div className="lg:w-2/3 pt-6 lg:pt-0">
           <div className="flex justify-center">
-            <img src={imageUrlVariation} className="w-5/6 lg:w-3/4  rounded-3xl"></img>
+            <img
+              src={imageUrlVariation}
+              className="w-5/6 lg:w-3/4 rounded-3xl"
+            ></img>
           </div>
         </div>
       </div>

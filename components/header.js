@@ -1,23 +1,27 @@
+import { SignInButton, UserButton } from "@clerk/nextjs";
 import React, { useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { isSignedIn } = useAuth();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   return (
-    <div className="flex justify-between pt-2 sm:pt-6 mx-2 sm:mx-12 mb-10 slide-in-top-animation">
+    <div className="flex justify-between pt-2 mx-2 sm:mx-12 mb-10 slide-in-top-animation">
       <a href="/">
         <div className="flex items-center hover:opacity-80 w-16 sm:w-28">
           <img
             src="/images/logo/LogoCreatAI1.png"
             alt="Your Logo"
-            style={imageStyle}
+            // style={imageStyle}
           />
         </div>
       </a>
-      <div className="roboto-font font-semibold mt-2 sm:mt-5 xl:mt-6 hidden lg:block">
+      <div className="roboto-font font-semibold mt-2 hidden lg:block">
         <a
           className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
           href="/generate-images"
@@ -36,12 +40,23 @@ export default function Header() {
         >
           E-mail replier
         </a>
-        <a
-          className="text-xs md:text-lg xl:text-2xl button-79"
-          href="/"
-        >
-          Sign in
-        </a>
+        {isSignedIn ? (
+          <a href="/account">
+                        <button className="relative" style={{ top: '20px' }}>
+              <img
+                src="/images/header/AccountIconWhite.png"
+                alt="Your Logo"
+                className="w-14"
+              />
+            </button>
+          </a>
+        ) : (
+          <SignInButton>
+            <button className="text-xs md:text-lg xl:text-2xl button-79">
+              Sign in
+            </button>
+          </SignInButton>
+        )}
       </div>
       <div className="block lg:hidden">
         <img
@@ -52,15 +67,43 @@ export default function Header() {
         />
         {menuOpen && (
           <div className="absolute top-18 sm:top-32 right-0 bg-black w-full text-center my-4 shadow-md z-10">
-            <a href="/generate-images" className="block p-2 border-b border-gray-200">
+            <a
+              href="/generate-images"
+              className="block p-2 border-b border-gray-200"
+            >
               Generate Images
             </a>
-            <a href="/image-variations" className="block p-2 border-b border-gray-200">
-            Image Variations
+            <a
+              href="/image-variations"
+              className="block p-2 border-b border-gray-200"
+            >
+              Image Variations
             </a>
-            <a href="/email-replier" className="block p-2 border-b border-gray-200">
-            E-mail replier
+            <a
+              href="/email-replier"
+              className="block p-2 border-b border-gray-200"
+            >
+              E-mail replier
             </a>
+            {isSignedIn ? (
+              <div className="my-1">
+                <a href="/account">
+                  <button>
+                    <img
+                      src="/images/header/AccountIconWhite.png"
+                      alt="Your Logo"
+                      className="w-14"
+                    />
+                  </button>
+                </a>
+              </div>
+            ) : (
+              <SignInButton>
+                <button className="text-xs md:text-lg xl:text-2xl button-79">
+                  Sign in
+                </button>
+              </SignInButton>
+            )}
           </div>
         )}
       </div>
@@ -70,6 +113,7 @@ export default function Header() {
 
 // ---------------------------------------------------------- inline CSS -----------------------------------------------------------------------
 
-const imageStyle = {
-  borderRadius: "0%", // Make the border round
-};
+// const imageStyle = {
+//   borderRadius: "0%", // Make the border round
+
+// };

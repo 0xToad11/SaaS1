@@ -10,7 +10,7 @@ export default function MainPageComponent1() {
         placeholder="Generate your Image"
         className="text-white text-xs lg:text-base opacity-50 w-1/2 lg:w-1/4 font-thin bg-black px-4 py-2 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <button className="button-36 mx-2">Generate</button>
+      <button onClick={() => window.location.href = '/generate-images'} className="button-36 mx-2">Generate</button>
     </div>
     </div>
   );

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import supabase from "/config/supabaseConfig";
+import { useUser } from "@clerk/nextjs";
 
-export default function GenerateImages() {
+export default function GenerateImages({ sessionId, credits, setCredits }) {
   const [selectedQuality, setSelectedQuality] = useState("Excellent"); // Set 'Excellent' as default
   const [selectedDimension, setSelectedDimension] = useState("3D"); // Set 'Excellent' as default
   const [selectedShape, setSelectedShape] = useState("Square"); // Set 'Excellent' as default
@@ -10,7 +12,29 @@ export default function GenerateImages() {
     "/images/mainpage/CatCoupleEating.png"
   );
   const [isLoading, setIsLoading] = useState(false); // State for loader
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null); // State for subscription status
+  const { user } = useUser(); // Get the authenticated user
 
+  useEffect(() => {
+    const fetchSubscriptionStatus = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from("users")
+          .select("subscription")
+          .eq("id", user.id)
+          .single();
+        if (error) {
+          console.error("Error fetching subscription status:", error);
+        } else {
+          setSubscriptionStatus(data.subscription);
+        }
+      }
+    };
+
+    if (user) {
+      fetchSubscriptionStatus();
+    }
+  }, [user]);
 
   const handleClickQuality = (value) => {
     setSelectedQuality(value);
@@ -25,6 +49,16 @@ export default function GenerateImages() {
   };
 
   const generateImage = async () => {
+    if (!user && credits <= 0) {
+      alert("No credits left. Please purchase more credits to continue.");
+      return;
+    }
+
+    if (user && subscriptionStatus !== "active") {
+      alert("Your subscription is not active. Please subscribe to continue.");
+      return;
+    }
+
     setIsLoading(true); // Show loader
     const model = selectedQuality === "Excellent" ? "dall-e-3" : "dall-e-2";
     const combinedPrompt = `${prompt} ${selectedDimension}`;
@@ -46,15 +80,33 @@ export default function GenerateImages() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/generate-image",
-        { prompt: combinedPrompt, model: model, size: size }
+        "https://saas1-five.vercel.app/api/generate-image",
+        {
+          prompt: combinedPrompt,
+          model: model,
+          size: size,
+        }
       );
       console.log(response);
       setImageUrl(response.data.imageUrl);
+
+      if (!user) {
+        // Decrement credits locally
+        setCredits(credits - 1);
+
+        // Update credits in the database
+        const { error } = await supabase
+          .from("SessionDB")
+          .update({ credits: credits - 1 })
+          .eq("session_id", sessionId);
+
+        if (error) {
+          console.error("Error decrementing credits:", error);
+        }
+      }
     } catch (error) {
       console.error("Error generating image:", error);
-    }
-    finally {
+    } finally {
       setIsLoading(false); // Hide loader
     }
   };
@@ -66,7 +118,9 @@ export default function GenerateImages() {
       </div>
       <div className="lg:flex pt-6 lg:pt-20">
         <div className="lg:w-1/3 pl-2 lg:pl-20 border pt-2 lg:pt-8 pb-6 lg:pb-12 rounded-xl border-slate-500 ml-6 mr-6 lg:mr-0 lg:ml-20 text-slate-200">
-          <div className="text-xs lg:text-base py-2">Create an Image from text prompt</div>
+          <div className="text-xs lg:text-base py-2">
+            Create an Image from text prompt
+          </div>
           <textarea
             placeholder="Enter your prompt"
             className="text-xs lg:text-base opacity-50 font-thin bg-slate-800 h-16 lg:h-24 w-11/12 lg:w-3/4 px-4 border border-blue-700 shadow-lg shadow-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 resize-none"
@@ -153,6 +207,15 @@ export default function GenerateImages() {
           ) : (
             <div className="loader mt-8"></div>
           )}
+          <div className="mt-4 text-xs lg:text-base">
+            {user
+              ? subscriptionStatus === "invalid" && (
+                  <a href="/account">
+                    <button className="button-29-sub mt-4">Subscribe</button>
+                  </a>
+                )
+              : `Credits: ${credits}`}
+          </div>
         </div>
         <div className="pt-10 lg:pt-0 lg:w-2/3">
           <div className="flex justify-center">

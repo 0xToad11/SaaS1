@@ -178,6 +178,53 @@ body {
 }
 
 /* CSS */
+.button-29-sub {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #52ed6e 0, #19c249 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(34, 139, 34, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-29-sub:focus {
+  box-shadow: #2e8b57 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #2e8b57 0 -3px 0 inset;
+}
+
+.button-29-sub:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #2e8b57 0 -3px 0 inset;
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.button-29-sub:active {
+  box-shadow: #2e8b57 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+
+/* CSS */
 .button-79 {
   backface-visibility: hidden;
   background: #332cf2;

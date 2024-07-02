@@ -38,8 +38,8 @@ export default function MainPageComponent4() {
             make it a full fledged e-mail.
           </div>
           <div className="mt-2 lg:mt-4">
-            <button className="button-34 hover:opacity-90">
-              E-mail replier
+            <button onClick={() => window.location.href = '/email-replier'} className="button-34 hover:opacity-90">
+              E-mail Replier
             </button>
           </div>
         </div>
