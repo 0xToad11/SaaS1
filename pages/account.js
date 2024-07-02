@@ -250,7 +250,7 @@ const Account = () => {
                             <button
                               onClick={() =>
                                 handleSubscription(
-                                  "price_1PWEObP49aoeYHEbrreYOqn8",
+                                  process.env.NEXT_PUBLIC_STRIPE_1Y_SUB,
                                   "1y"
                                 )
                               }
