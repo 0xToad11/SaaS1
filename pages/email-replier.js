@@ -60,7 +60,7 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
 
     try {
       const response = await axios.post(
-        "https://saas1-five.vercel.app/generate-email-reply",
+        "https://saas1-five.vercel.app/api/generate-email-reply",
         {
           prompt: combinedPrompt,
         }
