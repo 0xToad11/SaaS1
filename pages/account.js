@@ -144,7 +144,7 @@ const Account = () => {
               />
               <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">Manage Subscription</div>
             </li>
-            <div className="pt-40 lg:pt-60"></div>
+            <div className="pt-60 lg:pt-60"></div>
             <SignOutButton>
               <li
                 className={`cursor-pointer flex justify-center pr-2${
@@ -196,27 +196,26 @@ const Account = () => {
                   </h1>
                   {userData.subscription === "invalid" ? (
                     <div>
-                      <div className="pt-4 lg:pt-12 lg:text-lg">
+                      <div className="pt-4 lg:pt-12 text-sm lg:text-lg">
                         Subscription: {userData.subscription}
                       </div>
-                      <div className="pt-20 lg:pt-20">
-                        Subscribe to have full access to the CreatAI tools to
-                        help you market your business!
+                      <div className="pt-4 lg:pt-20 text-xs lg:text-base mb-12 lg:mb-0">
+                        Subscribe to have full access!
                       </div>
-                      <div className="flex pt-2 lg:pt-12">
-                        <div className="rounded-xl h-80 w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-24 image-scale">
+                      <div className="lg:flex pt-2 lg:pt-12">
+                        <div className="rounded-xl pb-2 lg:pb-0 w-40 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-0 lg:mr-24 image-scale">
                           <div className="text-center lg:text-3xl font-semibold pt-8">
                             Hobby
                           </div>
                           <div className="flex items-center justify-center">
-                            <div className="pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
+                            <div className="pt-4 lg:pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
                               $8
                             </div>
-                            <div className="pt-12 pl-2 lg:text-5xl text-slate-200">
+                            <div className="pt-4 lg:pt-12 pl-2 lg:text-5xl text-slate-200">
                               $5
                             </div>
                           </div>
-                          <div className="pt-8 text-center">- per month</div>
+                          <div className="pt-4 lg:pt-8 text-center">- per month</div>
                           <div className="text-center">- unlimited access</div>
                           <div className="flex justify-center">
                             <button
@@ -232,19 +231,19 @@ const Account = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="rounded-xl h-80 w-60 bg-gradient-to-b from-slate-500 to-slate-900 image-scale">
+                        <div className="rounded-xl pb-2 lg:pb-0 w-40 mt-12 lg:mt-0 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 image-scale">
                           <div className="text-center lg:text-3xl font-semibold pt-8">
                             Business
                           </div>
                           <div className="flex items-center justify-center">
-                            <div className="pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
+                            <div className="pt-4 lg:pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
                               $60
                             </div>
-                            <div className="pt-12 pl-2 lg:text-5xl text-slate-200">
+                            <div className="pt-4 lg:pt-12 pl-2 lg:text-5xl text-slate-200">
                               $50
                             </div>
                           </div>
-                          <div className="pt-8 text-center">- per year</div>
+                          <div className="pt-4 lg:pt-8 text-center">- per year</div>
                           <div className="text-center">- unlimited access</div>
                           <div className="flex justify-center">
                             <button
