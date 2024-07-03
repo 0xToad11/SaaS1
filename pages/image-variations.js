@@ -58,7 +58,7 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
     const fileType = imageVariation.type;
 
     try {
-      const { data } = await axios.get('https://saas1-five.vercel.app/api/upload-image', {
+      const { data } = await axios.get('/api/upload-image', {
         params: { fileType }
       });
 
@@ -74,7 +74,7 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
 
       const imageUrl = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${key}`;
 
-      const variationResponse = await axios.post('https://saas1-five.vercel.app/api/generate-variation', { imageUrl });
+      const variationResponse = await axios.post('/api/generate-variation', { imageUrl });
 
       setImageUrlVariation(variationResponse.data.variationUrl);
 
