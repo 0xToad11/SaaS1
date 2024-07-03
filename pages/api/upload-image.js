@@ -31,9 +31,10 @@ export default function handler(req, res) {
       } else {
         console.log('uploadUrl', uploadUrl);
 
-        res.setHeader('Access-Control-Allow-Origin', "https://saas1-five.vercel.app"); // Adjust if needed
-        res.setHeader('Access-Control-Allow-Methods', 'GET');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Origin', 'https://saas1-five.vercel.app'); // Adjust if needed
+        res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-requested-with');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
 
         res.status(200).json({
           uploadUrl,
