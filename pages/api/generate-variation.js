@@ -1,16 +1,6 @@
-import AWS from 'aws-sdk';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
-
-const s3 = new AWS.S3({
-  apiVersion: '2006-03-01',
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.NEXT_PUBLIC_AWS_REGION,
-  signatureVersion: 'v4',
-});
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
