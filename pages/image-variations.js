@@ -85,7 +85,6 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
           }
         }
 
-        alert("Image variation generated successfully!");
       } catch (error) {
         console.error("Error generating image variation:", error);
         alert("Error generating image variation");
