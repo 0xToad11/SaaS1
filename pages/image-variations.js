@@ -52,54 +52,53 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
 
     if (!imageVariation) {
       alert("Please upload an image");
+      setIsLoading(false);
       return;
     }
 
-    const fileType = imageVariation.type;
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(imageVariation);
+    fileReader.onloadend = async () => {
+      const base64Image = fileReader.result.split(',')[1]; // Get base64 string
 
-    try {
-      const { data } = await axios.get('/api/upload-image', {
-        params: { fileType }
-      });
+      try {
+        const { data } = await axios.post('/api/upload-to-imgur', { imageBase64: base64Image });
 
-      const { uploadUrl, key } = data;
+        const imageUrl = data.imageUrl;
 
-      await axios.put(uploadUrl, imageVariation, {
-        headers: {
-          'Content-Type': fileType,
-        },
-      });
+        const variationResponse = await axios.post('/api/generate-variation', { imageUrl });
 
-      console.log("Image uploaded to S3:", data);
+        setImageUrlVariation(variationResponse.data.variationUrl);
 
-      const imageUrl = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${key}`;
+        if (!user) {
+          // Decrement credits locally
+          setCredits(credits - 1);
 
-      const variationResponse = await axios.post('/api/generate-variation', { imageUrl });
+          // Update credits in the database
+          const { error } = await supabase
+            .from("SessionDB")
+            .update({ credits: credits - 1 })
+            .eq("session_id", sessionId);
 
-      setImageUrlVariation(variationResponse.data.variationUrl);
-
-      if (!user) {
-        // Decrement credits locally
-        setCredits(credits - 1);
-
-        // Update credits in the database
-        const { error } = await supabase
-          .from("SessionDB")
-          .update({ credits: credits - 1 })
-          .eq("session_id", sessionId);
-
-        if (error) {
-          console.error("Error decrementing credits:", error);
+          if (error) {
+            console.error("Error decrementing credits:", error);
+          }
         }
-      }
 
-      alert("Image variation generated successfully!");
-    } catch (error) {
-      console.error("Error generating image variation:", error);
-      alert("Error generating image variation");
-    } finally {
-      setIsLoading(false); // Hide loader
-    }
+        alert("Image variation generated successfully!");
+      } catch (error) {
+        console.error("Error generating image variation:", error);
+        alert("Error generating image variation");
+      } finally {
+        setIsLoading(false); // Hide loader
+      }
+    };
+
+    fileReader.onerror = () => {
+      console.error('Error reading file');
+      alert('Error reading file');
+      setIsLoading(false);
+    };
   };
 
   return (
