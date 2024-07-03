@@ -96,9 +96,9 @@ const Account = () => {
   return (
     <div className="flex">
       <SignedIn>
-        <div className="w-1/5 p-4 lg:px-12 lg:pt-12 bg-gradient-to-b from-cyan-500 to-blue-600 text-white h-90 rounded-2xl">
+        <div className="w-1/2 lg:w-1/5 p-4 lg:px-12 lg:pt-12 bg-gradient-to-b from-cyan-500 to-blue-600 text-white h-90 rounded-2xl">
           <ul className="space-y-4 mb-20">
-            <div className="text-center lg:pb-12 lg:text-xl font-semibold">
+            <div className="text-center lg:pb-12 text-lg lg:text-xl font-semibold">
               CreatAI Account
             </div>
             <li
@@ -110,9 +110,9 @@ const Account = () => {
               <img
                 src="/images/accountpage/GeneralIcon.png"
                 alt="General"
-                className="w-8"
+                className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-1">General</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">General</div>
             </li>
             <li
               className={`cursor-pointer flex hover:opacity-90 ${
@@ -125,9 +125,9 @@ const Account = () => {
               <img
                 src="/images/accountpage/SettingsIcon.png"
                 alt="Settings"
-                className="w-8"
+                className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-1">Settings</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:test-base">Settings</div>
             </li>
             <li
               className={`cursor-pointer flex hover:opacity-90 ${
@@ -140,9 +140,9 @@ const Account = () => {
               <img
                 src="/images/accountpage/ManageSubIcon.png"
                 alt="Manage Subscription"
-                className="w-8"
+                className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-1">Manage Subscription</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">Manage Subscription</div>
             </li>
             <div className="pt-40 lg:pt-60"></div>
             <SignOutButton>
@@ -154,7 +154,7 @@ const Account = () => {
                 <img
                   src="/images/accountpage/LogOutIcon.png"
                   alt="Logout"
-                  className="w-12 opacity-80 hover:opacity-100"
+                  className="w-10 lg:w-12 opacity-80 hover:opacity-100"
                 />
               </li>
             </SignOutButton>
@@ -166,13 +166,13 @@ const Account = () => {
               {activeTab === "General" && (
                 <div>
                   <h1 className="text-3xl font-semibold">General</h1>
-                  <div className="grid grid-cols-2 gap-4 pt-4 lg:pt-12 lg:text-lg">
+                  <div className="lg:grid grid-cols-2 gap-4 pt-4 lg:pt-12 text-sm lg:text-lg">
                     <div>Name:</div>
-                    <div>
+                    <div className="pb-4 lg:pb-0">
                       {userData.first_name} {userData.last_name}
                     </div>
                     <div>Email:</div>
-                    <div>{userData.email}</div>
+                    <div className="pb-4 lg:pb-0">{userData.email}</div>
                     <div>Subscription:</div>
                     <div>{userData.subscription}</div>
                   </div>
@@ -263,12 +263,12 @@ const Account = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="pt-12 lg:text-lg">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>Subscription :</div>
-                        <div>{userData.subscription}</div>
+                    <div className="pt-4 lg:pt-12 text-sm lg:text-lg">
+                      <div className="lg:grid grid-cols-2 gap-4">
+                        <div >Subscription :</div>
+                        <div className="pb-4 lg:pb-0">{userData.subscription}</div>
                         <div>Subscription type :</div>
-                        <div>
+                        <div className="pb-4 lg:pb-0">
                           {userData.stripe_sub_type === "1m"
                             ? "$5 per month"
                             : "$50 per year"}
