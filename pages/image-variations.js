@@ -5,9 +5,7 @@ import { useUser } from "@clerk/nextjs";
 
 export default function ImageVariations({ sessionId, credits, setCredits }) {
   const [imageVariation, setImageVariation] = useState(null);
-  const [imageUrlVariation, setImageUrlVariation] = useState(
-    "/images/mainpage/DogVariation1.png"
-  );
+  const [imageUrlVariation, setImageUrlVariation] = useState("/images/mainpage/DogVariation1.png");
   const [isLoading, setIsLoading] = useState(false); // State for loader
   const [subscriptionStatus, setSubscriptionStatus] = useState(null); // State for subscription status
   const { user } = useUser(); // Get the authenticated user
@@ -57,20 +55,28 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("image", imageVariation);
+    const fileType = imageVariation.type;
 
     try {
-      const response = await axios.post(
-        "https://saas1-five.vercel.app/api/generate-variation",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      setImageUrlVariation(response.data.imageUrlVariation);
+      const { data } = await axios.get('https://saas1-five.vercel.app/api/upload-image', {
+        params: { fileType }
+      });
+
+      const { uploadUrl, key } = data;
+
+      await axios.put(uploadUrl, imageVariation, {
+        headers: {
+          'Content-Type': fileType,
+        },
+      });
+
+      console.log("Image uploaded to S3:", data);
+
+      const imageUrl = `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com/${key}`;
+
+      const variationResponse = await axios.post('https://saas1-five.vercel.app/api/generate-variation', { imageUrl });
+
+      setImageUrlVariation(variationResponse.data.variationUrl);
 
       if (!user) {
         // Decrement credits locally
@@ -86,8 +92,11 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
           console.error("Error decrementing credits:", error);
         }
       }
+
+      alert("Image variation generated successfully!");
     } catch (error) {
       console.error("Error generating image variation:", error);
+      alert("Error generating image variation");
     } finally {
       setIsLoading(false); // Hide loader
     }
