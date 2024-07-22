@@ -432,3 +432,9 @@ input[type="file"]:hover {
 .slide-in-top-animation {
   animation: slideIn 0.5s;
 }
+
+/* styles.css */
+.text-oneliner {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}

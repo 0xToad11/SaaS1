@@ -117,6 +117,7 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
       <div className="lg:flex pt-6 lg:pt-20">
         <div className="lg:w-1/3 pl-2 lg:pl-20 border pt-2 lg:pt-8 pb-6 lg:pb-12 rounded-xl border-slate-500 ml-6 mr-6 lg:mr-0 lg:ml-20 text-slate-200">
           <div className="py-2">Create image variations from your image</div>
+          <div className="pb-2 opacity-20 font-thin text-sm">Max file size 0.5MB</div>
           <form onSubmit={handleSubmit}>
             <input
               type="file"
