@@ -60,13 +60,13 @@ export default function Header() {
       </div>
       <div className="block lg:hidden">
         <img
-          src="/images/header/MenuLogo.jpg"
+          src="/images/header/menuBar.png"
           alt="Menu Icon"
           onClick={toggleMenu}
           className="cursor-pointer mt-2 mr-2 sm:mt-4 w-8 sm:w-12"
         />
         {menuOpen && (
-          <div className="absolute top-18 sm:top-32 right-0 bg-black w-full text-center my-4 shadow-md z-10">
+          <div className="absolute top-18 sm:top-32 right-0 bg-black bg-opacity-70 w-full text-center my-4 shadow-md z-10">
             <a
               href="/generate-images"
               className="block p-2 border-b border-gray-200"
@@ -99,7 +99,7 @@ export default function Header() {
               </div>
             ) : (
               <SignInButton>
-                <button className="text-xs md:text-lg xl:text-2xl button-79">
+                <button className="text-xs md:text-lg xl:text-2xl button-79 my-1">
                   Sign in
                 </button>
               </SignInButton>

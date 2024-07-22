@@ -76,7 +76,7 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
           .from("SessionDB")
           .update({ credits: 0 })
           .eq("session_id", sessionId);
-          console.log("update credit db of" + sessionId);
+          console.log("update credit db of: " + sessionId);
 
         if (error) {
           console.error("Error decrementing credits:", error);

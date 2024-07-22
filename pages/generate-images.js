@@ -107,7 +107,9 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
     } catch (error) {
       console.error("Error generating image:", error);
     } finally {
-      setIsLoading(false); // Hide loader
+      setTimeout(() => {
+        setIsLoading(false); // Hide loader after 2 seconds
+      }, 2000); // 2000 milliseconds = 2 seconds
     }
   };
 

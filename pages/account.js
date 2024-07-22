@@ -112,7 +112,9 @@ const Account = () => {
                 alt="General"
                 className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">General</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">
+                General
+              </div>
             </li>
             <li
               className={`cursor-pointer flex hover:opacity-90 ${
@@ -127,7 +129,9 @@ const Account = () => {
                 alt="Settings"
                 className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:test-base">Settings</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:test-base">
+                Settings
+              </div>
             </li>
             <li
               className={`cursor-pointer flex hover:opacity-90 ${
@@ -142,7 +146,9 @@ const Account = () => {
                 alt="Manage Subscription"
                 className="w-6 h-6 lg:w-8 lg:h-8"
               />
-              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">Manage Subscription</div>
+              <div className="ml-2 pt-0 lg:pt-1 text-sm lg:text-base">
+                Manage Subscription
+              </div>
             </li>
             <div className="pt-60 lg:pt-60"></div>
             <SignOutButton>
@@ -174,7 +180,14 @@ const Account = () => {
                     <div>Email:</div>
                     <div className="pb-4 lg:pb-0">{userData.email}</div>
                     <div>Subscription:</div>
-                    <div>{userData.subscription}</div>
+                    <div className="flex items-center">
+                      {userData.subscription === "active" ? (
+                        <span className="h-4 w-4 bg-green-500 rounded-full mr-2"></span>
+                      ) : (
+                        <span className="h-4 w-4 bg-red-500 rounded-full mr-2"></span>
+                      )}
+                      <div>{userData.subscription}</div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -215,7 +228,9 @@ const Account = () => {
                               $5
                             </div>
                           </div>
-                          <div className="pt-4 lg:pt-8 text-center">- per month</div>
+                          <div className="pt-4 lg:pt-8 text-center">
+                            - per month
+                          </div>
                           <div className="text-center">- unlimited access</div>
                           <div className="flex justify-center">
                             <button
@@ -243,7 +258,9 @@ const Account = () => {
                               $50
                             </div>
                           </div>
-                          <div className="pt-4 lg:pt-8 text-center">- per year</div>
+                          <div className="pt-4 lg:pt-8 text-center">
+                            - per year
+                          </div>
                           <div className="text-center">- unlimited access</div>
                           <div className="flex justify-center">
                             <button
@@ -264,8 +281,15 @@ const Account = () => {
                   ) : (
                     <div className="pt-4 lg:pt-12 text-sm lg:text-lg">
                       <div className="lg:grid grid-cols-2 gap-4">
-                        <div >Subscription :</div>
-                        <div className="pb-4 lg:pb-0">{userData.subscription}</div>
+                        <div>Subscription :</div>
+                        <div className="pb-4 lg:pb-0 flex items-center">
+                          {userData.subscription === "active" ? (
+                            <span className="h-4 w-4 bg-green-500 rounded-full mr-2"></span>
+                          ) : (
+                            <span className="h-4 w-4 bg-red-500 rounded-full mr-2"></span>
+                          )}
+                          {userData.subscription}
+                        </div>
                         <div>Subscription type :</div>
                         <div className="pb-4 lg:pb-0">
                           {userData.stripe_sub_type === "1m"

@@ -56,6 +56,13 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
       return;
     }
 
+    const maxSizeInBytes = 500 * 1024; // 500KB in bytes
+    if (imageVariation.size > maxSizeInBytes) {
+      alert("Image size too big, max size 0.5MB");
+      setIsLoading(false);
+      return;
+    }
+
     const fileReader = new FileReader();
     fileReader.readAsDataURL(imageVariation);
     fileReader.onloadend = async () => {
@@ -89,7 +96,9 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
         console.error("Error generating image variation:", error);
         alert("Error generating image variation");
       } finally {
-        setIsLoading(false); // Hide loader
+        setTimeout(() => {
+          setIsLoading(false); // Hide loader after 1 seconds
+        }, 1000); // 1000 milliseconds = 1 seconds
       }
     };
 
