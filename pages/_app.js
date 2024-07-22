@@ -19,11 +19,21 @@ function InitializeSessionComponent({ setSessionId, setCredits }) {
   useEffect(() => {
     const setupSession = async () => {
       const { sessionId, credits } = await initializeSession(!!user);
-      setSessionId(sessionId);
-      setCredits(credits);
+
+      if (!user && sessionId) {
+        // If the user is not signed in and a sessionId is available
+        setSessionId(sessionId);
+        setCredits(credits);
+      } else {
+        // Handle the case when user is signed in or sessionId is not available
+        setSessionId(null);
+        setCredits(0);
+      }
+
       console.log("Session ID:", sessionId);
       console.log("Credits:", credits);
     };
+
     setupSession();
   }, [user, setSessionId, setCredits]);
 
