@@ -50,6 +50,22 @@ export default function App({ Component, pageProps }) {
         <Head>
           <title>CreatAI</title>
           <link rel="icon" href="/images/logo/LogoCreatAI1.png" />
+          {/* Google Analytics tracking code */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-PBJ9PY686Y"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-PBJ9PY686Y');
+            `,
+          }}
+        ></script>
         </Head>
         <div style={{ backgroundColor: "black", color: "white" }}>
           <div className="bg-gradient-to-b from-slate-900 from-70% to-slate-800 to-95%">
