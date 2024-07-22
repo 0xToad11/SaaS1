@@ -68,19 +68,20 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
       console.log("Response:", response.data);
       setResponseMessage(response.data.reply);
 
-      if (!user) {
+      // if (!user) {
         // Decrement credits locally
         setCredits(credits - 1);
-
+        print("new credits" + credits);
         // Update credits in the database
         const { error } = await supabase
           .from("SessionDB")
           .update({ credits: credits - 1 })
           .eq("session_id", sessionId);
+          console.log("update credit db");
 
         if (error) {
           console.error("Error decrementing credits:", error);
-        }
+        // }
       }
     } catch (error) {
       console.error("Error:", error);

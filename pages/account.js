@@ -152,7 +152,7 @@ const Account = () => {
                 }`}
               >
                 <img
-                  src="/images/accountpage/LogOutIcon.png"
+                  src="images/accountpage/LogOutIcon.png"
                   alt="Logout"
                   className="w-10 lg:w-12 opacity-80 hover:opacity-100"
                 />
