@@ -6,7 +6,7 @@
   },
   "crons": [
     {
-      "path": "/api/check-subscriptions",
+      "path": "/api/cron-check-subscriptions",
       "schedule": "*/5 * * * *"
     }
   ]
