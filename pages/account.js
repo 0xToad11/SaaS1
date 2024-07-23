@@ -209,9 +209,12 @@ const Account = () => {
                   </h1>
                   {userData.subscription === "invalid" ? (
                     <div>
-                      <div className="pt-4 lg:pt-12 text-sm lg:text-lg">
-                        Subscription: {userData.subscription}
+                      <div className="pt-4 lg:pt-12 text-sm lg:text-lg flex items-center">
+                        Subscription:{" "}
+                        <span className="h-4 w-4 bg-red-500 rounded-full ml-2 mr-2"></span>{" "}
+                        {userData.subscription}
                       </div>
+
                       <div className="pt-4 lg:pt-20 text-xs lg:text-base mb-12 lg:mb-0">
                         Subscribe to have full access!
                       </div>

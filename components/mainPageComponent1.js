@@ -2,7 +2,7 @@ export default function MainPageComponent1() {
   return (
     <div>
       <div className="flex flex-row justify-center pt-10 fade-in-animation-2s">
-        <img src="/images/logo/CreatAILogoText.png" className="w-5/6 lg:w-1/2"></img>
+        <img src="/images/logo/CreatAILogoText3.png" className="w-full lg:w-5/6"></img>
       </div>
       <div className="flex items-center justify-center pt-2 lg:pt-10 fade-in-animation-2s">
       <input
