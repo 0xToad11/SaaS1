@@ -3,11 +3,5 @@
     "pages/api/**/*": {
       "maxDuration": 30
     }
-  },
-  "crons": [
-    {
-      "path": "/api/cron-check-subscriptions",
-      "schedule": "*/5 * * * *"
-    }
-  ]
+  }
 }
