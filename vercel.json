@@ -2,10 +2,12 @@
   "functions": {
     "pages/api/**/*": {
       "maxDuration": 30
-    },
-    "api/check-subscriptions": {
-      "maxDuration": 30,
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/check-subscriptions",
       "schedule": "*/5 * * * *"
     }
-  }
+  ]
 }
