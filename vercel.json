@@ -1,7 +1,11 @@
 {
-    "functions": {
-      "pages/api/**/*": {
-        "maxDuration": 30
-      }
+  "functions": {
+    "pages/api/**/*": {
+      "maxDuration": 30
+    },
+    "api/check-subscriptions": {
+      "maxDuration": 30,
+      "schedule": "*/5 * * * *"
     }
   }
+}
