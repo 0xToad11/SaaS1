@@ -12,7 +12,7 @@ export default function MainPageComponent1() {
       />
       <button onClick={() => window.location.href = '/generate-images'} className="button-36 mx-2">Generate</button>
     </div>
-    <div className="text-center text-xl lg:text-4xl pt-12 lg:pt-20 font-bold text-gray-700 max-w-4xl mx-auto text-oneliner">
+    <div className="text-center text-xl lg:text-4xl pt-20 lg:pt-40 font-bold text-gray-700 max-w-4xl mx-auto text-oneliner">
   Empowering businesses and content creators with essential tools for marketing and creativity
 </div>
     </div>
