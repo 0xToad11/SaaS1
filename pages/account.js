@@ -296,8 +296,8 @@ const Account = () => {
                         <div>Subscription type :</div>
                         <div className="pb-4 lg:pb-0">
                           {userData.stripe_sub_type === "1m"
-                            ? "$5 per month"
-                            : "$50 per year"}
+                            ? "€5 per month"
+                            : "€50 per year"}
                         </div>
                         <div>Subscription end date :</div>
                         <div>
