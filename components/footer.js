@@ -7,14 +7,14 @@ export default function Footer() {
             className="text-sm my-1 mx-4 hover:text-slate-300"
             href="https://x.com/ContactCreatAI"
           >
-            <img className="w-6 h-6" src="images/footer/twitter.png"></img>
+            <img className="w-6 h-6 hover:opacity-80" src="images/footer/twitter.png"></img>
           </a>
           <a
             className="text-sm my-1 mx-4 hover:text-slate-300"
             href="mailto:contact@creatai.pro"
           >
             <img
-              className="w-10 h-10"
+              className="w-10 h-10 hover:opacity-80"
               src="images/footer/mailLogo.png"
               alt="Send Email"
             ></img>

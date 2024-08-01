@@ -70,11 +70,11 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
 
       if (!user) {
         // Decrement credits locally
-        setCredits(0);
+        setCredits(credits - 1);
         // Update credits in the database
         const { error } = await supabase
           .from("SessionDB")
-          .update({ credits: 0 })
+          .update({ credits: credits - 1 })
           .eq("session_id", sessionId);
           console.log("update credit db of: " + sessionId);
 

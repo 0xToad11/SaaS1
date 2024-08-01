@@ -31,7 +31,7 @@ export const initializeSession = async (isSignedIn) => {
   if (!sessionId || sessionExpired) {
     sessionId = uuidv4();
     localStorage.setItem('session_id', sessionId);
-    credits = 1;
+    credits = 3;
     await supabase.from('SessionDB').insert([{
       session_id: sessionId,
       credits: credits,
