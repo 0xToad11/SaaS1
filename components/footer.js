@@ -6,8 +6,13 @@ export default function Footer() {
           <a
             className="text-sm my-1 mx-4 hover:text-slate-300"
             href="https://x.com/ContactCreatAI"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <img className="w-6 h-6 hover:opacity-80" src="images/footer/twitter.png"></img>
+            <img
+              className="w-6 h-6 hover:opacity-80"
+              src="images/footer/twitter.png"
+            ></img>
           </a>
           <a
             className="text-sm my-1 mx-4 hover:text-slate-300"
@@ -17,6 +22,39 @@ export default function Footer() {
               className="w-10 h-10 hover:opacity-80"
               src="images/footer/mailLogo.png"
               alt="Send Email"
+            ></img>
+          </a>
+          <a
+            className="text-sm my-1 mx-4 hover:text-slate-300"
+            href="https://www.instagram.com/creatai.pro/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              className="w-8 h-8 hover:opacity-80"
+              src="images/footer/InstagramLogo.png"
+            ></img>
+          </a>
+          <a
+            className="text-sm my-1 mx-4 hover:text-slate-300"
+            href="https://www.youtube.com/channel/UCGj0tH_Lz_YoAFdHJYEvbFQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              className="w-10 h-10 hover:opacity-80"
+              src="images/footer/youtubeLogo2.png"
+            ></img>
+          </a>
+          <a
+            className="text-sm my-1 mx-4 hover:text-slate-300"
+            href="https://www.tiktok.com/@creatai.pro"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              className="w-8 h-8 hover:opacity-80"
+              src="images/footer/TikTokLogo2.png"
             ></img>
           </a>
         </div>
