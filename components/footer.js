@@ -48,7 +48,7 @@ export default function Footer() {
           </a>
           <a
             className="text-sm my-1 mx-4 hover:text-slate-300"
-            href="https://www.tiktok.com/@creatai.pro"
+            href="https://www.tiktok.com/@creataipro"
             target="_blank"
             rel="noopener noreferrer"
           >

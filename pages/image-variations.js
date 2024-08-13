@@ -5,7 +5,9 @@ import { useUser } from "@clerk/nextjs";
 
 export default function ImageVariations({ sessionId, credits, setCredits }) {
   const [imageVariation, setImageVariation] = useState(null);
-  const [imageUrlVariation, setImageUrlVariation] = useState("/images/mainpage/DogVariation1.png");
+  const [imageUrlVariation, setImageUrlVariation] = useState(
+    "/images/mainpage/DogVariation1.png"
+  );
   const [isLoading, setIsLoading] = useState(false); // State for loader
   const [subscriptionStatus, setSubscriptionStatus] = useState(null); // State for subscription status
   const { user } = useUser(); // Get the authenticated user
@@ -56,6 +58,14 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
       return;
     }
 
+    // Check if the uploaded file is a JPG
+    const allowedFileTypes = ["image/png"];
+    if (!allowedFileTypes.includes(imageVariation.type)) {
+      alert("Please upload a PNG file");
+      setIsLoading(false);
+      return;
+    }
+
     const maxSizeInBytes = 500 * 1024; // 500KB in bytes
     if (imageVariation.size > maxSizeInBytes) {
       alert("Image size too big, max size 0.5MB");
@@ -66,14 +76,18 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
     const fileReader = new FileReader();
     fileReader.readAsDataURL(imageVariation);
     fileReader.onloadend = async () => {
-      const base64Image = fileReader.result.split(',')[1]; // Get base64 string
+      const base64Image = fileReader.result.split(",")[1]; // Get base64 string
 
       try {
-        const { data } = await axios.post('/api/upload-to-imgur', { imageBase64: base64Image });
+        const { data } = await axios.post("/api/upload-to-imgur", {
+          imageBase64: base64Image,
+        });
 
         const imageUrl = data.imageUrl;
 
-        const variationResponse = await axios.post('/api/generate-variation', { imageUrl });
+        const variationResponse = await axios.post("/api/generate-variation", {
+          imageUrl,
+        });
 
         setImageUrlVariation(variationResponse.data.variationUrl);
 
@@ -91,7 +105,6 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
             console.error("Error decrementing credits:", error);
           }
         }
-
       } catch (error) {
         console.error("Error generating image variation:", error);
         alert("Error generating image variation");
@@ -103,8 +116,8 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
     };
 
     fileReader.onerror = () => {
-      console.error('Error reading file');
-      alert('Error reading file');
+      console.error("Error reading file");
+      alert("Error reading file");
       setIsLoading(false);
     };
   };
@@ -117,7 +130,9 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
       <div className="lg:flex pt-6 lg:pt-20">
         <div className="lg:w-1/3 pl-2 lg:pl-20 border pt-2 lg:pt-8 pb-6 lg:pb-12 rounded-xl border-slate-500 ml-6 mr-6 lg:mr-0 lg:ml-20 text-slate-200">
           <div className="py-2">Create image variations from your image</div>
-          <div className="pb-2 opacity-20 font-thin text-sm">Max file size 0.5MB</div>
+          <div className="pb-2 opacity-20 font-thin text-sm">
+            Max file size: 0.5MB. Only PNG files are allowed.
+          </div>
           <form onSubmit={handleSubmit}>
             <input
               type="file"
