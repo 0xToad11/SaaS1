@@ -43,7 +43,7 @@ export default function Footer() {
           >
             <img
               className="w-10 h-10 hover:opacity-80"
-              src="images/footer/youtubeLogo2.png"
+              src="images/footer/YoutubeLogo2.png"
             ></img>
           </a>
           <a
