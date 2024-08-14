@@ -88,17 +88,19 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
     localStorage.setItem("requestCount", requestCount.toString());
     localStorage.setItem("lastRequestTime", currentTime.toString());
 
-    if (requestCount > 10 && requestCount % 5 === 1) {
-      timeoutDuration =
-        timeoutDuration === 0 ? 15 * 60 * 1000 : timeoutDuration * 2; // Start with 15 min, then double
-      localStorage.setItem("timeoutDuration", timeoutDuration.toString());
-      alert(
-        `You have exceeded your request limit. Please wait ${
-          timeoutDuration / 60000
-        } minutes.`
-      );
-      return false;
-    }
+    // Apply rate limit only at request counts 10, 15, 20, etc.
+  if (requestCount >= 10 && requestCount % 5 === 0) {
+    timeoutDuration =
+      timeoutDuration === 0 ? 15 * 60 * 1000 : timeoutDuration * 2; // Start with 15 min, then double
+    localStorage.setItem("timeoutDuration", timeoutDuration.toString());
+    alert(
+      `You have exceeded your request limit. Please wait ${
+        timeoutDuration / 60000
+      } minutes.`
+    );
+    return false;
+  }
+
 
     // Allow request to proceed
     return true;
