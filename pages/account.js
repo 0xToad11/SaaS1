@@ -225,10 +225,10 @@ const Account = () => {
                           </div>
                           <div className="flex items-center justify-center">
                             <div className="pt-4 lg:pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
-                              €8
+                              €10
                             </div>
                             <div className="pt-4 lg:pt-12 pl-2 lg:text-5xl text-slate-200">
-                              €5
+                              €7.99
                             </div>
                           </div>
                           <div className="pt-4 lg:pt-8 text-center">
@@ -255,10 +255,10 @@ const Account = () => {
                           </div>
                           <div className="flex items-center justify-center">
                             <div className="pt-4 lg:pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
-                              €60
+                              €96
                             </div>
                             <div className="pt-4 lg:pt-12 pl-2 lg:text-5xl text-slate-200">
-                              €50
+                              €79.99
                             </div>
                           </div>
                           <div className="pt-4 lg:pt-8 text-center">
@@ -296,8 +296,8 @@ const Account = () => {
                         <div>Subscription type :</div>
                         <div className="pb-4 lg:pb-0">
                           {userData.stripe_sub_type === "1m"
-                            ? "€5 per month"
-                            : "€50 per year"}
+                            ? "€7.99 per month"
+                            : "€79.99 per year"}
                         </div>
                         <div>Subscription end date :</div>
                         <div>

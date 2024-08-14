@@ -41,7 +41,7 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
     e.preventDefault();
 
     if (!user && credits <= 0) {
-      alert("No credits left. Please purchase more credits to continue.");
+      alert("No credits left. Wait 24h to receive new credits or subscribe to have unlimited access.");
       return;
     }
 

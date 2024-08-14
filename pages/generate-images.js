@@ -48,9 +48,71 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
     setSelectedShape(value);
   };
 
+  const getAmsterdamTime = () => {
+    const now = new Date();
+    const utcOffset = now.getTimezoneOffset(); // in minutes
+    const amsterdamOffset = 60; // Amsterdam is UTC+1 in winter, UTC+2 in summer (adjust if necessary)
+    const offsetDifference = amsterdamOffset - utcOffset / 60;
+    return new Date(now.getTime() + offsetDifference * 60 * 60 * 1000);
+  };
+
+  const resetDailyLimit = () => {
+    const today = getAmsterdamTime().toISOString().split("T")[0];
+    const lastResetDate = localStorage.getItem("lastResetDate");
+
+    if (lastResetDate !== today) {
+      localStorage.setItem("requestCount", "0");
+      localStorage.setItem("timeoutDuration", "0");
+      localStorage.setItem("lastResetDate", today);
+    }
+  };
+
+  const handleRateLimiting = () => {
+    resetDailyLimit();
+
+    let requestCount = parseInt(localStorage.getItem("requestCount"), 10) || 0;
+    let timeoutDuration =
+      parseInt(localStorage.getItem("timeoutDuration"), 10) || 0;
+    const lastRequestTime =
+      parseInt(localStorage.getItem("lastRequestTime"), 10) || 0;
+    const currentTime = Date.now();
+
+    if (currentTime - lastRequestTime < timeoutDuration) {
+      alert(
+        `You are rate limited. Please wait ${Math.ceil(
+          (timeoutDuration - (currentTime - lastRequestTime)) / 60000
+        )} minutes.`
+      );
+      return false;
+    }
+
+    requestCount += 1;
+    localStorage.setItem("requestCount", requestCount.toString());
+    localStorage.setItem("lastRequestTime", currentTime.toString());
+
+    if (requestCount > 10 && requestCount % 5 === 1) {
+      timeoutDuration =
+        timeoutDuration === 0 ? 15 * 60 * 1000 : timeoutDuration * 2; // Start with 15 min, then double
+      localStorage.setItem("timeoutDuration", timeoutDuration.toString());
+      alert(
+        `You have exceeded your request limit. Please wait ${
+          timeoutDuration / 60000
+        } minutes.`
+      );
+      return false;
+    }
+
+    // Allow request to proceed
+    return true;
+  };
+
   const generateImage = async () => {
+    if (!handleRateLimiting()) return;
+
     if (!user && credits <= 0) {
-      alert("No credits left. Please purchase more credits to continue.");
+      alert(
+        "No credits left. Wait 24h to receive new credits or subscribe to have unlimited access."
+      );
       return;
     }
 
