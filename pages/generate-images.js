@@ -48,16 +48,14 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
     setSelectedShape(value);
   };
 
-  const getAmsterdamTime = () => {
+  // Get the current date in UTC
+  const getUTCDate = () => {
     const now = new Date();
-    const utcOffset = now.getTimezoneOffset(); // in minutes
-    const amsterdamOffset = 60; // Amsterdam is UTC+1 in winter, UTC+2 in summer (adjust if necessary)
-    const offsetDifference = amsterdamOffset - utcOffset / 60;
-    return new Date(now.getTime() + offsetDifference * 60 * 60 * 1000);
+    return now.toISOString().split("T")[0]; // Returns the date part in YYYY-MM-DD format
   };
 
   const resetDailyLimit = () => {
-    const today = getAmsterdamTime().toISOString().split("T")[0];
+    const today = getUTCDate();
     const lastResetDate = localStorage.getItem("lastResetDate");
 
     if (lastResetDate !== today) {
