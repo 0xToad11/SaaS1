@@ -13,7 +13,7 @@ export default function MainPageComponent1() {
       <button onClick={() => window.location.href = '/generate-images'} className="button-36 mx-2">Generate</button>
     </div>
     <div className="flex flex-row mt-28 opacity-80 justify-center">
-      <img src = "/images/mainpage/coupleBoat.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+      <img src = "/images/mainpage/CoupleMexico.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
       <img src = "/images/mainpage/coupleCatJapan.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
       <img src = "/images/mainpage/couplePhilipines.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
       <img src = "/images/mainpage/CoupleMexico.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
