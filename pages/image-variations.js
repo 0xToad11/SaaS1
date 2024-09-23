@@ -6,7 +6,7 @@ import { useUser } from "@clerk/nextjs";
 export default function ImageVariations({ sessionId, credits, setCredits }) {
   const [imageVariation, setImageVariation] = useState(null);
   const [imageUrlVariation, setImageUrlVariation] = useState(
-    "/images/mainpage/DogVariation1.png"
+    "/images/mainpage/Skincare2.png"
   );
   const [isLoading, setIsLoading] = useState(false); // State for loader
   const [subscriptionStatus, setSubscriptionStatus] = useState(null); // State for subscription status
@@ -166,6 +166,12 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
             ></img>
           </div>
         </div>
+      </div>
+      <div className="mt-20 flex flex-row justify-center opacity-70">
+        <img src="/images/mainpage/Skincare.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/SkincareVar1.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/SkincareVar2.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/SkincareVar5.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
       </div>
     </div>
   );

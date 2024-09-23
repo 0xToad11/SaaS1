@@ -287,6 +287,12 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
           </div>
         </div>
       </div>
+      <div className="mt-20 flex flex-row justify-center opacity-70">
+        <img src="/images/mainpage/CoupleBoat.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/Logo6.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/Skincare2.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+        <img src="/images/mainpage/PaintingManAtFarm.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+      </div>
     </div>
   );
 }

@@ -12,6 +12,24 @@ export default function MainPageComponent1() {
       />
       <button onClick={() => window.location.href = '/generate-images'} className="button-36 mx-2">Generate</button>
     </div>
+    <div className="flex flex-row mt-28 opacity-80 justify-center">
+      <img src = "/images/mainpage/coupleBoat.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+      <img src = "/images/mainpage/coupleCatJapan.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+      <img src = "/images/mainpage/couplePhilipines.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+      <img src = "/images/mainpage/CoupleMexico.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    </div>
+    <div className="flex flex-row justify-center mt-4 opacity-60">
+    <img src = "/images/mainpage/Logo1.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/Logo2.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/Logo5.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/Logo6.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    </div>
+    <div className="flex flex-row justify-center mt-4 opacity-40">
+    <img src = "/images/mainpage/SkincareVar1.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/SkincareVar5.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/Skincare.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    <img src = "/images/mainpage/SkincareVar2.png" className="w-20 h-20 lg:w-80 lg:h-80 rounded-lg mx-1 lg:mx-2"></img>
+    </div>
     <div className="text-center text-xl lg:text-4xl pt-20 lg:pt-40 font-bold text-gray-700 max-w-4xl mx-auto text-oneliner">
   Empowering businesses and content creators with essential tools for marketing and creativity
 </div>
