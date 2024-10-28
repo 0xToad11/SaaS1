@@ -54,7 +54,7 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
     try {
       // Example Axios call from the front-end
       const response = await axios.post(
-        "/api/generate-video",
+        "https://www.creatai.pro/api/generate-video",
         {
           prompt: prompt, // Dynamic prompt
         },
@@ -117,7 +117,7 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
                 ) : (
                   <div className="loader mt-8"></div>
                 )}
-                <div>Your Credits: {creditAccount}</div>
+                <div className="pt-2 lg:pt-4">Your Credits: {creditAccount}</div>
               </div>
             ) : (
               // Display for non-logged-in users
