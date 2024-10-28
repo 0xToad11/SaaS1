@@ -25,7 +25,8 @@ export const config = {
             email: email_addresses[0]?.email_address,
             first_name,
             last_name,
-            subscription: 'invalid'
+            subscription: 'invalid',
+            credit_account: 1
           });
   
           // Add user data to Supabase
@@ -35,7 +36,8 @@ export const config = {
               email: email_addresses[0]?.email_address,
               first_name,
               last_name,
-              subscription: 'invalid'
+              subscription: 'invalid',
+              credit_account: 1
             },
           ]);
   
