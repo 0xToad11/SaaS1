@@ -33,7 +33,7 @@ export default async function handler(req, res) {
             } else if (generation.state === 'failed') {
                 throw new Error(`Generation failed: ${generation.failure_reason}`);
             } else {
-                console.log('Dreaming...');
+                console.log('Dreaming....');
                 await new Promise((r) => setTimeout(r, 3000)); // Wait for 3 seconds
             }
         }
