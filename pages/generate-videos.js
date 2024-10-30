@@ -117,7 +117,7 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
                 ) : (
                   <div className="loader mt-8"></div>
                 )}
-                <div className="pt-2 lg:pt-4">Your Credits: {creditAccount}</div>
+                <div className="pt-2 lg:pt-4 pl-1">Your Credits: {creditAccount}</div>
               </div>
             ) : (
               // Display for non-logged-in users

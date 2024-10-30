@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 import { LumaAI } from 'lumaai';
+import path from 'path';
 
 const client = new LumaAI({ authToken: process.env.LUMAAI_API_KEY });
 
@@ -38,17 +39,18 @@ export default async function handler(req, res) {
         }
 
         const videoUrl = generation.assets.video;
+        const tempFilePath = path.join('/tmp', `${generation.id}.mp4`);
 
         // Optional: Download the video to the server (comment out if not needed)
         const response = await fetch(videoUrl);
-        const fileStream = fs.createWriteStream(`${generation.id}.mp4`);
+        const fileStream = fs.createWriteStream(tempFilePath);
         await new Promise((resolve, reject) => {
             response.body.pipe(fileStream);
             response.body.on('error', reject);
             fileStream.on('finish', resolve);
         });
 
-        console.log(`File downloaded as ${generation.id}.mp4`);
+        console.log(`File downloaded as ${tempFilePath}`);
 
         // Respond with the video URL or path
         res.status(200).json({ videoUrl });
