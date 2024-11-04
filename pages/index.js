@@ -3,6 +3,7 @@ import MainPageComponent1 from "../components/mainPageComponent1";
 import MainPageComponent2 from "../components/mainPageComponent2";
 import MainPageComponent3 from "../components/mainPageComponent3";
 import MainPageComponent4 from "/components/mainPageComponent4";
+import MainPageComponent5 from "@/components/mainPageComponent5";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <MainPageComponent2/>
       <MainPageComponent3/>
       <MainPageComponent4/>
+      <MainPageComponent5/>
     </div>
   );
 }
