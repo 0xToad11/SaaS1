@@ -234,7 +234,11 @@ const Account = () => {
                           <div className="pt-4 lg:pt-8 text-center">
                             - per month
                           </div>
-                          <div className="text-center">- unlimited access</div>
+                          <div className="text-center">
+                            - unlimited access
+                            <br />
+                            except video generation
+                          </div>
                           <div className="flex justify-center">
                             <button
                               onClick={() =>
@@ -264,7 +268,11 @@ const Account = () => {
                           <div className="pt-4 lg:pt-8 text-center">
                             - per year
                           </div>
-                          <div className="text-center">- unlimited access</div>
+                          <div className="text-center">
+                            - unlimited access
+                            <br />
+                            except video generation
+                          </div>
                           <div className="flex justify-center">
                             <button
                               onClick={() =>
@@ -276,6 +284,35 @@ const Account = () => {
                               className="mt-4 px-4 py-2 button-29-sub text-white rounded"
                             >
                               Subscribe
+                            </button>
+                          </div>
+                        </div>
+                        <div className="rounded-xl pb-2 lg:pb-0 w-40 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-0 lg:mr-24 image-scale">
+                          <div className="text-center lg:text-3xl font-semibold pt-8">
+                            Video Generator
+                          </div>
+                          <div className="flex items-center justify-center">
+                            <div className="pt-4 lg:pt-12 lg:text-5xl line-through text-slate-400 opacity-50">
+                              €6
+                            </div>
+                            <div className="pt-4 lg:pt-12 pl-2 lg:text-5xl text-slate-200">
+                              €4.99
+                            </div>
+                          </div>
+                          <div className="pt-4 lg:pt-8 text-center">
+                            - 10 credits
+                          </div>
+                          <div className="flex justify-center">
+                            <button
+                              onClick={() =>
+                                handleSubscription(
+                                  process.env.NEXT_PUBLIC_STRIPE_10C_SUB,
+                                  "10c"
+                                )
+                              }
+                              className="mt-4 px-4 py-2 button-29-sub text-white rounded"
+                            >
+                              Buy
                             </button>
                           </div>
                         </div>

@@ -36,6 +36,12 @@ export default function Header() {
         </a>
         <a
           className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
+          href="/generate-videos"
+        >
+          Generate Videos
+        </a>
+        <a
+          className="p-2 xl:p-4 mx-2 sm:mx-4 xl:mx-6 text-xs md:text-lg xl:text-2xl hover:opacity-80"
           href="/email-replier"
         >
           E-mail replier

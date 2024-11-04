@@ -3,7 +3,6 @@ import axios from "axios";
 import supabase from "/config/supabaseConfig";
 import { useUser, SignInButton } from "@clerk/nextjs";
 
-
 export default function GenerateVideos({ sessionId, credits, setCredits }) {
   const [isLoading, setIsLoading] = useState(false); // State for loader
   const [prompt, setPrompt] = useState("");
@@ -117,7 +116,9 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
                 ) : (
                   <div className="loader mt-8"></div>
                 )}
-                <div className="pt-2 lg:pt-4 pl-1">Your Credits: {creditAccount}</div>
+                <div className="pt-2 lg:pt-4 pl-1">
+                  Your Credits: {creditAccount}
+                </div>
               </div>
             ) : (
               // Display for non-logged-in users
@@ -143,6 +144,22 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
             </div>
           )}
         </div>
+      </div>
+      <div className="flex flex-col items-center lg:flex lg:flex-row lg:justify-center lg:space-x-8 pt-10 lg:pt-20 space-y-4 sm:space-y-0">
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+          <source src="/vids/GreenGardenSunShining.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+          <source src="/vids/CuteCatsPlayingInHouse.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+          <source src="/vids/WaterfallNatureForestAnimalsSunshine.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );
