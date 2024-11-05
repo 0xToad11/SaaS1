@@ -146,17 +146,17 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
         </div>
       </div>
       <div className="flex flex-col items-center lg:flex lg:flex-row lg:justify-center lg:space-x-8 pt-10 lg:pt-20 space-y-4 sm:space-y-0">
-        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls playsInline muted>
           <source src="/vids/GreenGardenSunShining.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls playsInline muted>
           <source src="/vids/CuteCatsPlayingInHouse.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
-        <video className="w-3/4 lg:w-1/4 rounded-xl" controls>
+        <video className="w-3/4 lg:w-1/4 rounded-xl" controls playsInline muted>
           <source src="/vids/WaterfallNatureForestAnimalsSunshine.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>

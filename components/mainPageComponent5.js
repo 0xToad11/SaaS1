@@ -23,7 +23,7 @@ export default function MainPageComponent5() {
           </div>
         </div>
         <div className="mt-8 lg:mt-24 w-3/12">
-          <video className="w-full rounded-lg" controls>
+          <video className="w-full rounded-lg" controls playsInline muted>
             <source src="/vids/GreenGardenSunShining.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

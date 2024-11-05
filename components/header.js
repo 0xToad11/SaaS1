@@ -86,6 +86,12 @@ export default function Header() {
               Image Variations
             </a>
             <a
+              href="/generate-videos"
+              className="block p-2 border-b border-gray-200"
+            >
+              Generate Videos
+            </a>
+            <a
               href="/email-replier"
               className="block p-2 border-b border-gray-200"
             >
