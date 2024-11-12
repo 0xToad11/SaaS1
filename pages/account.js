@@ -6,7 +6,7 @@ import {
   SignOutButton,
 } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import supabase from "/config/supabaseConfig";
+import axios from "axios";
 
 const Account = () => {
   const { user } = useUser();
