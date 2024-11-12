@@ -7,22 +7,25 @@ export const initializeSession = async (isSignedIn) => {
     return { sessionId: null, credits: 0 }; // No need to initialize session if user is signed in
   }
 
-  let sessionId = localStorage.getItem("session_id");
-  let sessionExpired = false;
+  let sessionId = localStorage.getItem('session_id');
   let credits = 0;
+  let sessionExpired = false;
 
   if (sessionId) {
-    const { data, error } = await supabase
-      .from("SessionDB")
-      .select("expiry, credits")
-      .eq("session_id", sessionId)
-      .single();
-    if (error || !data || new Date(data.expiry) < new Date()) {
+    try {
+      const response = await axios.post('/api/session-management', { sessionId });
+      const { sessionExpired: expired, credits: sessionCredits } = response.data;
+
+      sessionExpired = expired;
+      credits = sessionCredits;
+
+      if (sessionExpired) {
+        localStorage.removeItem('session_id');
+      }
+    } catch (error) {
+      console.error('Failed to check session:', error);
       sessionExpired = true;
-      await supabase.from("SessionDB").delete().eq("session_id", sessionId);
-      localStorage.removeItem("session_id");
-    } else {
-      credits = data.credits;
+      credits = 0;
     }
   }
 
