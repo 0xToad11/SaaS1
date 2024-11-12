@@ -1,5 +1,6 @@
 // pages/api/add-session.js
-import supabase from '../../config/supabaseConfig'; // Your server-side Supabase client setup
+//import supabase from '../../config/supabaseConfig'; // Your server-side Supabase client setup
+import supabaseServer from '../../config/supabaseServerClient'; // Use the server-side Supabase client
 
 export default async function handler(req, res) {
   const { sessionId, credits } = req.body;
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   // Only allow setting 2 credits server-side to prevent tampering
-  const { data, error } = await supabase.from('SessionDB').insert([
+  const { data, error } = await supabaseServer.from('SessionDB').insert([
     {
       session_id: sessionId,
       credits: 2,
