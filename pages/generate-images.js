@@ -18,22 +18,17 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
   useEffect(() => {
     const fetchSubscriptionStatus = async () => {
       if (user) {
-        const { data, error } = await supabase
-          .from("users")
-          .select("subscription")
-          .eq("id", user.id)
-          .single();
-        if (error) {
+        try {
+          const response = await axios.post("/api/check-subscription", {
+            userId: user.id,
+          });
+          setSubscriptionStatus(response.data.subscription);
+        } catch (error) {
           console.error("Error fetching subscription status:", error);
-        } else {
-          setSubscriptionStatus(data.subscription);
         }
       }
     };
-
-    if (user) {
-      fetchSubscriptionStatus();
-    }
+    fetchSubscriptionStatus();
   }, [user]);
 
   const handleClickQuality = (value) => {
@@ -156,18 +151,23 @@ export default function GenerateImages({ sessionId, credits, setCredits }) {
         // Decrement credits locally
         setCredits(credits - 1);
 
-        // Update credits in the database
-        const { error } = await supabase
-          .from("SessionDB")
-          .update({ credits: credits - 1 })
-          .eq("session_id", sessionId);
+        // Update credits in the database via API call
+        const response = await axios.post("/api/decrement-credits", {
+          sessionId,
+          credits,
+        });
 
-        if (error) {
-          console.error("Error decrementing credits:", error);
+        if (response.data.error) {
+          console.error("Error decrementing credits:", response.data.error);
+        } else {
+          console.log(
+            "Credits decremented in database for session:",
+            sessionId
+          );
         }
       }
     } catch (error) {
-      console.error("Error generating image:", error);
+      console.error("Error:", error);
     } finally {
       setTimeout(() => {
         setIsLoading(false); // Hide loader after 2 seconds
