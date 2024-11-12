@@ -270,7 +270,7 @@ const Account = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="rounded-xl pb-2 lg:pb-0 w-40 mt-12 lg:mt-0 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 image-scale">
+                        <div className="rounded-xl pb-2 lg:pb-0 w-40 mt-12 lg:mt-0 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-0 lg:mr-24 image-scale">
                           <div className="text-center lg:text-3xl font-semibold pt-8">
                             Business
                           </div>
@@ -304,7 +304,7 @@ const Account = () => {
                             </button>
                           </div>
                         </div>
-                        <div className="rounded-xl pb-2 lg:pb-0 w-40 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-0 lg:mr-24 image-scale">
+                        <div className="rounded-xl pb-2 lg:pb-0 mt-12 lg:mt-0  w-40 lg:h-80 lg:w-60 bg-gradient-to-b from-slate-500 to-slate-900 mr-0 lg:mr-24 image-scale">
                           <div className="text-center lg:text-3xl font-semibold pt-8">
                             Video Generator
                           </div>
@@ -319,7 +319,7 @@ const Account = () => {
                           <div className="pt-4 lg:pt-8 text-center">
                             - 10 credits
                           </div>
-                          <div className="flex justify-center">
+                          <div className="flex justify-center mt-0 lg:mt-12">
                             <button
                               onClick={() =>
                                 handleSubscription(
