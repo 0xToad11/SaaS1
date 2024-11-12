@@ -17,15 +17,11 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
   useEffect(() => {
     const fetchSubscriptionStatus = async () => {
       if (user) {
-        const { data, error } = await supabase
-          .from("users")
-          .select("subscription")
-          .eq("id", user.id)
-          .single();
-        if (error) {
+        try {
+          const response = await axios.post('/api/check-subscription', { userId: user.id });
+          setSubscriptionStatus(response.data.subscription);
+        } catch (error) {
           console.error("Error fetching subscription status:", error);
-        } else {
-          setSubscriptionStatus(data.subscription);
         }
       }
     };
