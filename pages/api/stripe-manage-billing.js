@@ -25,7 +25,7 @@
 // }
 
 // pages/api/stripe-manage-billing.js
-import supabase from '../../config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
   }
 
   // Fetch the stripe_id from Supabase
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('users')
     .select('stripe_id')
     .eq('id', userId)
