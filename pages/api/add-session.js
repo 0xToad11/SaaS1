@@ -1,5 +1,5 @@
 // pages/api/add-session.js
-import supabase from '../../utils/session'; // Your server-side Supabase client setup
+import supabase from '../../config/supabaseConfig'; // Your server-side Supabase client setup
 
 export default async function handler(req, res) {
   const { sessionId, credits } = req.body;
