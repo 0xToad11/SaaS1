@@ -18,7 +18,9 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
     const fetchSubscriptionStatus = async () => {
       if (user) {
         try {
-          const response = await axios.post('/api/check-subscription', { userId: user.id });
+          const response = await axios.post("/api/check-subscription", {
+            userId: user.id,
+          });
           setSubscriptionStatus(response.data.subscription);
         } catch (error) {
           console.error("Error fetching subscription status:", error);
@@ -42,7 +44,9 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
 
   const handleSubmit = async () => {
     if (!user && credits <= 0) {
-      alert("No credits left. Wait 24h to receive new credits or subscribe to have unlimited access.");
+      alert(
+        "No credits left. Wait 24h to receive new credits or subscribe to have unlimited access."
+      );
       return;
     }
 
@@ -67,15 +71,20 @@ export default function EmailReplier({ sessionId, credits, setCredits }) {
       if (!user) {
         // Decrement credits locally
         setCredits(credits - 1);
-        // Update credits in the database
-        const { error } = await supabase
-          .from("SessionDB")
-          .update({ credits: credits - 1 })
-          .eq("session_id", sessionId);
-          console.log("update credit db of: " + sessionId);
 
-        if (error) {
-          console.error("Error decrementing credits:", error);
+        // Update credits in the database via API call
+        const response = await axios.post("/api/decrement-credits", {
+          sessionId,
+          credits,
+        });
+
+        if (response.data.error) {
+          console.error("Error decrementing credits:", response.data.error);
+        } else {
+          console.log(
+            "Credits decremented in database for session:",
+            sessionId
+          );
         }
       }
     } catch (error) {
