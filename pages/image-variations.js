@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import supabase from "/config/supabaseConfig";
 import { useUser } from "@clerk/nextjs";
 
 export default function ImageVariations({ sessionId, credits, setCredits }) {
@@ -15,22 +14,17 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
   useEffect(() => {
     const fetchSubscriptionStatus = async () => {
       if (user) {
-        const { data, error } = await supabase
-          .from("users")
-          .select("subscription")
-          .eq("id", user.id)
-          .single();
-        if (error) {
+        try {
+          const response = await axios.post("/api/check-subscription", {
+            userId: user.id,
+          });
+          setSubscriptionStatus(response.data.subscription);
+        } catch (error) {
           console.error("Error fetching subscription status:", error);
-        } else {
-          setSubscriptionStatus(data.subscription);
         }
       }
     };
-
-    if (user) {
-      fetchSubscriptionStatus();
-    }
+    fetchSubscriptionStatus();
   }, [user]);
 
   const handleImageChange = (e) => {
@@ -94,20 +88,24 @@ export default function ImageVariations({ sessionId, credits, setCredits }) {
         if (!user) {
           // Decrement credits locally
           setCredits(credits - 1);
-
-          // Update credits in the database
-          const { error } = await supabase
-            .from("SessionDB")
-            .update({ credits: credits - 1 })
-            .eq("session_id", sessionId);
-
-          if (error) {
-            console.error("Error decrementing credits:", error);
+  
+          // Update credits in the database via API call
+          const response = await axios.post("/api/decrement-credits", {
+            sessionId,
+            credits,
+          });
+  
+          if (response.data.error) {
+            console.error("Error decrementing credits:", response.data.error);
+          } else {
+            console.log(
+              "Credits decremented in database for session:",
+              sessionId
+            );
           }
         }
       } catch (error) {
-        console.error("Error generating image variation:", error);
-        alert("Error generating image variation");
+        console.error("Error:", error);
       } finally {
         setTimeout(() => {
           setIsLoading(false); // Hide loader after 1 seconds

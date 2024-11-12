@@ -20,18 +20,13 @@ const Account = () => {
   }, [user]);
 
   const fetchUserData = async () => {
-    const { data, error } = await supabase
-      .from("users")
-      .select(
-        "id, email, first_name, last_name, subscription, stripe_sub_type, expiry_date"
-      )
-      .eq("id", user.id)
-      .single();
-
-    if (error) {
+    try {
+      const response = await axios.post("/api/fetch-user-data", {
+        userId: user.id,
+      });
+      setUserData(response.data);
+    } catch (error) {
       console.error("Error fetching user data:", error);
-    } else {
-      setUserData(data);
     }
   };
 
@@ -53,40 +48,62 @@ const Account = () => {
     }
   };
 
+  // const handleBillingPortal = async () => {
+  //   try {
+  //     // Fetch the stripe_id from Supabase
+  //     const { data, error } = await supabase
+  //       .from("users")
+  //       .select("stripe_id")
+  //       .eq("id", user.id)
+  //       .single();
+
+  //     if (error || !data) {
+  //       console.error("Error fetching stripe_id from Supabase:", error);
+  //       return;
+  //     }
+
+  //     const stripeCustomerId = data.stripe_id;
+
+  //     // Create a billing portal session
+  //     const response = await fetch("/api/stripe-manage-billing", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ stripeCustomerId }),
+  //     });
+
+  //     const responseData = await response.json();
+
+  //     if (responseData.url) {
+  //       window.location.href = responseData.url;
+  //     } else {
+  //       console.error(
+  //         "Error creating billing portal session:",
+  //         responseData.error
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error("Error handling billing portal:", error);
+  //   }
+  // };
+
   const handleBillingPortal = async () => {
     try {
-      // Fetch the stripe_id from Supabase
-      const { data, error } = await supabase
-        .from("users")
-        .select("stripe_id")
-        .eq("id", user.id)
-        .single();
-
-      if (error || !data) {
-        console.error("Error fetching stripe_id from Supabase:", error);
-        return;
-      }
-
-      const stripeCustomerId = data.stripe_id;
-
-      // Create a billing portal session
-      const response = await fetch("/api/stripe-manage-billing", {
-        method: "POST",
+      const response = await fetch('/api/stripe-manage-billing', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ stripeCustomerId }),
+        body: JSON.stringify({ userId: user.id }),
       });
-
+  
       const responseData = await response.json();
-
+  
       if (responseData.url) {
         window.location.href = responseData.url;
       } else {
-        console.error(
-          "Error creating billing portal session:",
-          responseData.error
-        );
+        console.error("Error creating billing portal session:", responseData.error);
       }
     } catch (error) {
       console.error("Error handling billing portal:", error);

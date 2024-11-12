@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import supabase from "/config/supabaseConfig";
 import { useUser, SignInButton } from "@clerk/nextjs";
 
 export default function GenerateVideos({ sessionId, credits, setCredits }) {
@@ -14,16 +13,14 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
   useEffect(() => {
     const fetchSubscriptionStatus = async () => {
       if (user) {
-        const { data, error } = await supabase
-          .from("users")
-          .select("subscription, credit_account")
-          .eq("id", user.id)
-          .single();
-        if (error) {
+        try {
+          const response = await axios.post("/api/check-subscription", {
+            userId: user.id,
+          });
+          setSubscriptionStatus(response.data.subscription);
+          setCreditAccount(response.data.credit_account); // Assuming you have a `setCreditAccount` state setter
+        } catch (error) {
           console.error("Error fetching subscription status:", error);
-        } else {
-          setSubscriptionStatus(data.subscription);
-          setCreditAccount(data.credit_account); // Assuming you have a `setCreditAccount` state setter
         }
       }
     };
@@ -71,15 +68,17 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
       if (user) {
         // Decrement credits locally
         setCreditAccount(creditAccount - 1);
-        // Update credits in the database
-        const { error } = await supabase
-          .from("users")
-          .update({ credit_account: creditAccount - 1 })
-          .eq("id", user.id);
-        console.log("update credit db of: " + user.id);
 
-        if (error) {
-          console.error("Error decrementing credits:", error);
+        // Update credits in the database via API call
+        const response = await axios.post("/api/decrement-credit_account", {
+          userId: user.id,
+          creditAccount,
+        });
+
+        if (response.data.error) {
+          console.error("Error decrementing credits:", response.data.error);
+        } else {
+          console.log("Credits decremented in database for user:", user.id);
         }
       }
     } catch (error) {
@@ -157,7 +156,10 @@ export default function GenerateVideos({ sessionId, credits, setCredits }) {
         </video>
 
         <video className="w-3/4 lg:w-1/4 rounded-xl" controls playsInline muted>
-          <source src="/vids/WaterfallNatureForestAnimalsSunshine.mp4" type="video/mp4" />
+          <source
+            src="/vids/WaterfallNatureForestAnimalsSunshine.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
       </div>
