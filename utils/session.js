@@ -28,16 +28,25 @@ export const initializeSession = async (isSignedIn) => {
     }
   }
 
-  if (!sessionId || sessionExpired) {
-    sessionId = uuidv4();
-    localStorage.setItem('session_id', sessionId);
-    credits = 2;
-    await supabase.from('SessionDB').insert([{
-      session_id: sessionId,
-      credits: credits,
-      expiry: new Date(new Date().getTime() + 24 * 60 * 60 * 1000) // 24 hours from now
-    }]);
+// Client-side code
+if (!sessionId || sessionExpired) {
+  sessionId = uuidv4();
+  localStorage.setItem('session_id', sessionId);
+  
+  const response = await fetch('/api/add-session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ sessionId }),
+  });
+
+  const result = await response.json();
+  if (result.error) {
+    console.error('Error creating session:', result.error);
   }
+}
+
 
   return { sessionId, credits };
 };
