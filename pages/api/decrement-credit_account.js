@@ -1,4 +1,4 @@
-import supabase from '../../config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   }
 
   // Update the credit_account in the database
-  const { error } = await supabase
+  const { error } = await supabaseServer
     .from('users')
     .update({ credit_account: creditAccount - 1 })
     .eq('id', userId);

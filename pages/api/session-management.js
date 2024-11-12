@@ -1,5 +1,5 @@
 // pages/api/session-management.js
-import supabase from '../../config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   }
 
   // Check session in the database
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('SessionDB')
     .select('expiry, credits')
     .eq('session_id', sessionId)

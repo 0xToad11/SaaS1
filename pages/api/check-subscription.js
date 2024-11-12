@@ -1,5 +1,5 @@
 // pages/api/check-subscription.js
-import supabase from "../../config/supabaseConfig";
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   // Query the database for the subscription status
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from("users")
     .select("subscription, credit_account")
     .eq("id", userId)

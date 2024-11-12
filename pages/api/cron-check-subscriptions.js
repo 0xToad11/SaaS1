@@ -1,6 +1,6 @@
 // pages/api/check-subscriptions.js
 
-import supabase from "@/config/supabaseConfig";
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const now = new Date().toISOString();
 
     // Fetch users where the expiry_date is less than the current time
-    const { data: users, error } = await supabase
+    const { data: users, error } = await supabaseServer
       .from('users')
       .select('id')
       .lte('expiry_date', now)
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     // Update users whose subscription has expired
     if (users.length > 0) {
       const userIds = users.map(user => user.id);
-      const { error: updateError } = await supabase
+      const { error: updateError } = await supabaseServer
         .from('users')
         .update({ subscription: 'invalid' })
         .in('id', userIds);

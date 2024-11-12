@@ -1,5 +1,5 @@
 // pages/api/fetch-user-data.js
-import supabase from '../../config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   // Query the database for the user's information
-  const { data, error } = await supabase
+  const { data, error } = await supabaseServer
     .from('users')
     .select('id, email, first_name, last_name, subscription, stripe_sub_type, expiry_date')
     .eq('id', userId)

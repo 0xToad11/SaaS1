@@ -1,6 +1,6 @@
 import initStripe from "stripe";
 import { buffer } from "micro";
-import supabase from "/config/supabaseConfig";
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export const config = { api: { bodyParser: false } };
 
@@ -44,7 +44,7 @@ const handler = async (req, res) => {
     try {
       if (stripeSubType === "10c") {
         // Add 10 credits to the user's account
-        const { data, error } = await supabase
+        const { data, error } = await supabaseServer
           .from("users")
           .update({
             credit_account: supabase.raw("credit_account + 10"), // Increment by 10
@@ -69,7 +69,7 @@ const handler = async (req, res) => {
         }
 
         // Update subscription status, stripe_id, stripe_sub_type, and expiry_date
-        const { data, error } = await supabase
+        const { data, error } = await supabaseServer
           .from("users")
           .update({
             subscription: "active",

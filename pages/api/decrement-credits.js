@@ -1,5 +1,5 @@
 // pages/api/decrement-credits.js
-import supabase from '../../config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   // Update the credits in the database
-  const { error } = await supabase
+  const { error } = await supabaseServer
     .from('SessionDB')
     .update({ credits: credits - 1 })
     .eq('session_id', sessionId);

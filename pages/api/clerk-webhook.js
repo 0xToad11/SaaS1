@@ -1,5 +1,5 @@
 import { buffer } from 'micro';
-import supabase from '/config/supabaseConfig';
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export const config = {
     api: {
@@ -30,7 +30,7 @@ export const config = {
           });
   
           // Add user data to Supabase
-          const { error } = await supabase.from('users').insert([
+          const { error } = await supabaseServer.from('users').insert([
             {
               id,
               email: email_addresses[0]?.email_address,

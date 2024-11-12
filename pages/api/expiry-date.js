@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+import supabaseServer from '../../config/supabaseServerConfig';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { data: users, error } = await supabase
+    const { data: users, error } = await supabaseServer
       .from('users')
       .select('id, stripe_expiry_date')
       .not('subscription', 'eq', 'invalid');
