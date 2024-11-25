@@ -350,7 +350,7 @@ const Account = () => {
                             <button
                               onClick={() =>
                                 handlePayment(
-                                  process.env.NEXT_PUBLIC_STRIPE_1P_TEST,
+                                  process.env.NEXT_PUBLIC_STRIPE_10C,
                                   "10c"
                                 )
                               }
