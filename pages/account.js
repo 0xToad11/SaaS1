@@ -48,6 +48,30 @@ const Account = () => {
     }
   };
 
+  const handlePayment = async (priceId, subscriptionType) => {
+    try {
+      const response = await fetch("/api/stripe-checkout-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ priceId, sessionId: user.id, subscriptionType }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        console.error("Error creating checkout session:", data.error);
+      }
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
+  };
+  
+
   // const handleBillingPortal = async () => {
   //   try {
   //     // Fetch the stripe_id from Supabase
@@ -90,20 +114,23 @@ const Account = () => {
 
   const handleBillingPortal = async () => {
     try {
-      const response = await fetch('/api/stripe-manage-billing', {
-        method: 'POST',
+      const response = await fetch("/api/stripe-manage-billing", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId: user.id }),
       });
-  
+
       const responseData = await response.json();
-  
+
       if (responseData.url) {
         window.location.href = responseData.url;
       } else {
-        console.error("Error creating billing portal session:", responseData.error);
+        console.error(
+          "Error creating billing portal session:",
+          responseData.error
+        );
       }
     } catch (error) {
       console.error("Error handling billing portal:", error);
@@ -322,8 +349,8 @@ const Account = () => {
                           <div className="flex justify-center mt-0 lg:mt-12">
                             <button
                               onClick={() =>
-                                handleSubscription(
-                                  process.env.NEXT_PUBLIC_STRIPE_10C_SUB,
+                                handlePayment(
+                                  process.env.NEXT_PUBLIC_STRIPE_10C,
                                   "10c"
                                 )
                               }
