@@ -43,18 +43,33 @@ const handler = async (req, res) => {
 
     try {
       if (stripeSubType === "10c") {
-        // Add 10 credits to the user's account
-        const { data, error } = await supabaseServer
+        // Fetch the current value of credit_account
+        const { data: user, error: fetchError } = await supabaseServer
+          .from("users")
+          .select("credit_account")
+          .eq("id", userId)
+          .single();
+
+        if (fetchError) {
+          console.error("Error fetching user credit_account:", fetchError);
+          return res.status(500).send("Error fetching user credits");
+        }
+
+        const currentCredit = user?.credit_account || 0; // Default to 0 if null
+        const newCredit = currentCredit + 10;
+
+        // Update the credit_account with the incremented value
+        const { data, error: updateError } = await supabaseServer
           .from("users")
           .update({
+            credit_account: newCredit,
             stripe_id: stripeCustomerId,
             stripe_sub_type: stripeSubType,
           })
-          .eq("id", userId)
-          .increment("credit_account", 10); // Increment credit_account by 10
+          .eq("id", userId);
 
-        if (error) {
-          console.error("Error updating user credits:", error);
+        if (updateError) {
+          console.error("Error updating user credits:", updateError);
           return res.status(500).send("Error updating user credits");
         }
 
