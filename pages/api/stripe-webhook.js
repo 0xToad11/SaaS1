@@ -1,6 +1,6 @@
 import initStripe from "stripe";
 import { buffer } from "micro";
-import supabaseServer from '../../config/supabaseServerConfig';
+import supabaseServer from "../../config/supabaseServerConfig";
 
 export const config = { api: { bodyParser: false } };
 
@@ -47,11 +47,11 @@ const handler = async (req, res) => {
         const { data, error } = await supabaseServer
           .from("users")
           .update({
-            credit_account: supabase.raw("credit_account + 10"), // Increment by 10
             stripe_id: stripeCustomerId,
             stripe_sub_type: stripeSubType,
           })
-          .eq("id", userId);
+          .eq("id", userId)
+          .increment("credit_account", 10); // Increment credit_account by 10
 
         if (error) {
           console.error("Error updating user credits:", error);
