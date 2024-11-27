@@ -11,6 +11,10 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   };
   return (
+    <div>
+      <div className="bg-red-600 text-white text-center py-2">
+        Functions temporarily disabled, because of exploits of the tools happening.
+      </div>
     <div className="flex justify-between pt-2 mx-2 sm:mx-12 mb-10 slide-in-top-animation">
       <a href="/">
         <div className="flex items-center hover:opacity-80 w-16 sm:w-28">
@@ -119,6 +123,7 @@ export default function Header() {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }
